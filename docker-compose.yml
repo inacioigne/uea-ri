@@ -19,10 +19,10 @@ services:
       # dspace.dir: Must match with Dockerfile's DSPACE_INSTALL directory.
       dspace__P__dir: /dspace
       # Uncomment to set a non-default value for dspace.server.url or dspace.ui.url
-      dspace__P__server__P__url: http://localhost:8080/server
-      dspace__P__ui__P__url: http://localhost:4000
-      # dspace__P__server__P__url: http://dspace-beta.uea.edu.br/server
-      # dspace__P__ui__P__url: http://dspace-beta.uea.edu.br/
+      # dspace__P__server__P__url: http://localhost:8080/server
+      # dspace__P__ui__P__url: http://localhost:4000
+      dspace__P__server__P__url: http://dspace-beta.uea.edu.br/server
+      dspace__P__ui__P__url: http://dspace-beta.uea.edu.br/
       dspace__P__name: 'Repositório Institucional UEA'
       # db.url: Ensure we are using the 'dspacedb' image for our database
       db__P__url: 'jdbc:postgresql://dspacedb:5432/dspace'

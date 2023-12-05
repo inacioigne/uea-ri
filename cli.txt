@@ -2,6 +2,13 @@
 docker compose -p d7 build
 Subir containers
 docker compose -p d7 up -d
+docker compose -p d7 up dspace-angular --force-recreate -d 
 
 Logos
 docker compose -p d7 logs
+
+checkout para uma tag especifica
+git checkout tags/dspace-7.6.1 -b v7.6.1
+
+# Clonar repositorio 
+git clone --recursive --bare https://github.com/inacioigne/uea-ri.git

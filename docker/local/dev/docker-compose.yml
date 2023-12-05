@@ -1,12 +1,6 @@
-# TESTE
 version: '3.7'
 networks:
   networkuea:
-    # ipam:
-    #   config:
-    #     # Define a custom subnet for our DSpace network, so that we can easily trust requests from host to container.
-    #     # If you customize this value, be sure to customize the 'proxies.trusted.ipranges' env variable below.
-    #     - subnet: 172.23.0.0/16
 services:
   # DSpace (backend) webapp container
   dspace:
@@ -19,10 +13,10 @@ services:
       # dspace.dir: Must match with Dockerfile's DSPACE_INSTALL directory.
       dspace__P__dir: /dspace
       # Uncomment to set a non-default value for dspace.server.url or dspace.ui.url
-      # dspace__P__server__P__url: http://localhost:8080/server
-      # dspace__P__ui__P__url: http://localhost:4000
-      dspace__P__server__P__url: http://dspace-beta.uea.edu.br/server
-      dspace__P__ui__P__url: http://dspace-beta.uea.edu.br/
+      dspace__P__server__P__url: http://localhost:8080/server
+      dspace__P__ui__P__url: http://localhost:4000
+      # dspace__P__server__P__url: http://dspace-beta.uea.edu.br/server
+      # dspace__P__ui__P__url: http://dspace-beta.uea.edu.br/
       dspace__P__name: 'Repositório Institucional UEA'
       # db.url: Ensure we are using the 'dspacedb' image for our database
       db__P__url: 'jdbc:postgresql://dspacedb:5432/dspace'
@@ -34,7 +28,7 @@ services:
       LOGGING_CONFIG: /dspace/config/log4j2-container.xml
     image: "${DOCKER_OWNER:-dspace}/dspace:${DSPACE_VER:-dspace-7_x-test}"
     build:
-      context: ./api
+      context: ../../../api
       dockerfile: Dockerfile.test
     depends_on:
     - dspacedb
@@ -51,10 +45,10 @@ services:
     tty: true
     volumes:
     # Keep DSpace assetstore directory between reboots
-    - ./api/assetstore:/dspace/assetstore
+    - ../../../api/assetstore:/dspace/assetstore
     # Mount local [src]/dspace/config/ to container. This syncs your local configs with container
     # NOTE: Environment variables specified above will OVERRIDE any configs in local.cfg or dspace.cfg
-    - ./api/dspace/config:/dspace/config
+    - ../../../api/dspace/config:/dspace/config
     # Ensure that the database is ready BEFORE starting tomcat
     # 1. While a TCP connection to dspacedb port 5432 is not available, continue to sleep
     # 2. Then, run database migration to init database tables
@@ -73,7 +67,7 @@ services:
     image: "${DOCKER_OWNER:-dspace}/dspace-postgres-pgcrypto:${DSPACE_VER:-dspace-7_x}"
     build:
       # Must build out of subdirectory to have access to install script for pgcrypto
-      context: ./api/dspace/src/main/docker/dspace-postgres-pgcrypto/
+      context: ../../../api/dspace/src/main/docker/dspace-postgres-pgcrypto/
     environment:
       PGDATA: /pgdata
       POSTGRES_PASSWORD: dspace
@@ -139,7 +133,7 @@ services:
       DSPACE_REST_NAMESPACE: /server
     image: dspace/dspace-angular:dspace-7_x
     build:
-      context: ./frontend
+      context: ../../../frontend
       dockerfile: Dockerfile
     networks:
       networkuea:

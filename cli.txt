@@ -1,0 +1,7 @@
+# Build
+docker compose -p d7 build
+Subir containers
+docker compose -p d7 up -d
+
+Logos
+docker compose -p d7 logs

@@ -85,7 +85,7 @@ services:
     image: "${DOCKER_OWNER:-dspace}/dspace-solr:${DSPACE_VER:-dspace-7_x}"
     build:
       # context: ../../../
-      context: ../../../api
+      context: .
       dockerfile: /docker/dspace-solr/Dockerfile
       args:
         SOLR_VERSION: "${SOLR_VER:-8.11}"

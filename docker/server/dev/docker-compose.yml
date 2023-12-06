@@ -86,7 +86,7 @@ services:
     build:
       # context: ../../../
       context: .
-      dockerfile: /docker/dspace-solr/Dockerfile
+      dockerfile: ./docker/dspace-solr/Dockerfile 
       args:
         SOLR_VERSION: "${SOLR_VER:-8.11}"
     networks:

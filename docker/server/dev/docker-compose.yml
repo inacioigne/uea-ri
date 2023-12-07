@@ -11,7 +11,7 @@ services:
       dockerfile: Dockerfile
     working_dir: /etc/nginx
     volumes:
-      - ../../../dspace-nginx/TEST-nginx/:/home
+      - /TEST-nginx/:/home
       # - ../../../dspace-nginx/nginx/:/etc/nginx
     networks:
       networkuea:

@@ -7,7 +7,7 @@ services:
     container_name: dspace-nginx
     image: nginx:latest
     build:
-      context: ./dspace-nginx
+      context: ../../../docker/dspace-nginx
       dockerfile: Dockerfile
     working_dir: /etc/nginx
     volumes:

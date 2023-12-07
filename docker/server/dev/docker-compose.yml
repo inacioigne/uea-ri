@@ -11,7 +11,7 @@ services:
       dockerfile: Dockerfile
     working_dir: /etc/nginx
     volumes:
-      - /nginx/:/etc/nginx
+      - ./nginx/:/etc/nginx
     networks:
       networkuea:
     depends_on:
@@ -101,7 +101,6 @@ services:
     image: "${DOCKER_OWNER:-dspace}/dspace-solr:${DSPACE_VER:-dspace-7_x}"
     build:
       context: ../../../
-      # context: ../
       dockerfile: ./docker/dspace-solr/Dockerfile 
       args:
         SOLR_VERSION: "${SOLR_VER:-8.11}"

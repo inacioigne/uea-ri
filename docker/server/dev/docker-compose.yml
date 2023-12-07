@@ -10,8 +10,8 @@ services:
       context: ../../../docker/dspace-nginx
       dockerfile: Dockerfile
     working_dir: /etc/nginx
-    volumes:
-      - ../../../dspace-nginx/config/:/etc/nginx
+    # volumes:
+    #   - ../../../dspace-nginx/nginx/:/etc/nginx
     networks:
       networkuea:
     depends_on:

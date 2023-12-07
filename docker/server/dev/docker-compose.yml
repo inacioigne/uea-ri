@@ -2,6 +2,22 @@ version: '3.7'
 networks:
   networkuea:
 services:
+  # Nginx
+  dspace-nginx:
+    container_name: dspace-nginx
+    image: nginx:latest
+    build:
+      context: ./dspace-nginx
+      dockerfile: Dockerfile
+    working_dir: /etc/nginx
+    volumes:
+      - ./nginx/config/:/etc/nginx
+    networks:
+      networkuea:
+    depends_on:
+      - dspace-angular
+    ports:
+      - "80:80"
   # DSpace (backend) webapp container
   dspace:
     container_name: dspace

@@ -11,7 +11,7 @@ services:
       dockerfile: Dockerfile
     working_dir: /etc/nginx
     volumes:
-      - ../../../dspace-nginx/nginx/:/etc/nginx
+      - ../../../dspace-nginx/config/:/etc/nginx
     networks:
       networkuea:
     depends_on:

@@ -12,3 +12,5 @@ git checkout tags/dspace-7.6.1 -b v7.6.1
 
 # Clonar repositorio 
 git clone --recursive --bare https://github.com/inacioigne/uea-ri.git
+
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' dspace-angular

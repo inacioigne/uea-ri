@@ -12,8 +12,6 @@ services:
     working_dir: /etc/nginx
     volumes:
       - ./dspace-nginx/nginx/:/etc/nginx
-            # - ../../dspace-nginx/nginx/:/etc/nginx
-
     networks:
       networkuea:
     depends_on:

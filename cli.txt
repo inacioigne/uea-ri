@@ -13,4 +13,9 @@ git checkout tags/dspace-7.6.1 -b v7.6.1
 # Clonar repositorio 
 git clone --recursive --bare https://github.com/inacioigne/uea-ri.git
 
+# Encontrar ip do container
 docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' dspace-angular
+
+# subir container
+sudo docker compose -p d7 -f ./docker/server/dev/docker-compose.yml up dspace-nginx --force-recreate -d
+

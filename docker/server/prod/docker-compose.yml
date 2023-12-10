@@ -30,7 +30,7 @@ services:
       dspace__P__dir: /dspace
       # Uncomment to set a non-default value for dspace.server.url or dspace.ui.url
       dspace__P__server__P__url: https://dspace-beta.uea.edu.br/server
-      dspace__P__ui__P__url: https://dspace-beta.uea.edu.br/
+      dspace__P__ui__P__url: https://dspace-beta.uea.edu.br
       dspace__P__name: 'Repositório Institucional UEA'
       # db.url: Ensure we are using the 'dspacedb' image for our database
       db__P__url: 'jdbc:postgresql://dspacedb:5432/dspace'
@@ -38,11 +38,10 @@ services:
       solr__P__server: http://dspacesolr:8983/solr
       # proxies.trusted.ipranges: This setting is required for a REST API running in Docker to trust requests
       # from the host machine. This IP range MUST correspond to the 'dspacenet' subnet defined above.
-      proxies__P__trusted__P__ipranges: '172.23.0'
+      proxies__P__trusted__P__ipranges: '172.27.0' 
       LOGGING_CONFIG: /dspace/config/log4j2-container.xml
     # image: "${DOCKER_OWNER:-dspace}/dspace:${DSPACE_VER:-dspace-7_x-test}"
     image: "${DOCKER_OWNER:-dspace}/dspace:${DSPACE_VER:-dspace-7_x}"
-
     build:
       context: ../../../api
       dockerfile: Dockerfile

@@ -12,7 +12,7 @@ services:
     working_dir: /etc/nginx
     volumes:
       - ./dspace-nginx/nginx/:/etc/nginx
-      - ./dspace-nginx/cert:/home
+      - ./dspace-nginx/cert:/home/cert
     networks:
       networkuea:
     depends_on:

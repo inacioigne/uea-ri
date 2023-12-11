@@ -1,6 +1,6 @@
 FROM nginx:latest
 
-COPY ./dspace-nginx/cert /home/
+COPY /cert /home/
 
 
 

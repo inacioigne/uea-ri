@@ -140,8 +140,8 @@ services:
       DSPACE_UI_PORT: '4000'
       DSPACE_UI_NAMESPACE: /
       DSPACE_REST_SSL: 'true'
-      # DSPACE_REST_HOST: dspace-beta.uea.edu.br
-      DSPACE_REST_HOST: ri.fbnovas.edu.br
+      DSPACE_REST_HOST: dspace-beta.uea.edu.br
+      # DSPACE_REST_HOST: ri.fbnovas.edu.br
       DSPACE_REST_PORT: 443
       DSPACE_REST_NAMESPACE: /server
     image: dspace/dspace-angular:dspace-7_x-dist

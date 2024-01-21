@@ -1,0 +1,12 @@
+version: '3.7'
+services:
+  dspace-angular-test:
+    container_name: test
+    image: dspace/dspace-angular:dspace-7_x
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # restart: always
+
+
+

@@ -1,0 +1,30 @@
+version: '3.7'
+networks:
+  networkuea:
+services:
+  dspace-angular:
+    container_name: dspace-angular
+    environment:
+      DSPACE_UI_SSL: 'false'
+      DSPACE_UI_HOST: dspace-angular
+      DSPACE_UI_PORT: '4000'
+      DSPACE_UI_NAMESPACE: /
+      DSPACE_REST_SSL: 'true'
+      DSPACE_REST_HOST: dspace-beta.uea.edu.br
+      # DSPACE_REST_HOST: ri.fbnovas.edu.br
+      DSPACE_REST_PORT: 443
+      DSPACE_REST_NAMESPACE: /server
+    image: dspace/dspace-angular:dspace-7_x-dist
+    build:
+      context: ../../../frontend
+      # dockerfile: Dockerfile
+      dockerfile: Dockerfile.dist
+    networks:
+      networkuea:
+    ports:
+    - published: 4000
+      target: 4000
+    # - published: 9876
+    #   target: 9876
+    stdin_open: true
+    tty: true

@@ -2,24 +2,6 @@ version: '3.7'
 networks:
   networkuea:
 services:
-  # Nginx
-  # dspace-nginx:
-  #   container_name: dspace-nginx
-  #   image: nginx:latest
-  #   build:
-  #     context: ../../../docker/dspace-nginx
-  #     dockerfile: Dockerfile
-  #   working_dir: /etc/nginx
-  #   volumes:
-  #     - ./dspace-nginx/nginx/:/etc/nginx
-  #     - ./dspace-nginx/cert:/home/cert
-  #   networks:
-  #     networkuea:
-  #   depends_on:
-  #     - dspace-angular
-  #   ports:
-  #     - "80:80"
-  # DSpace (backend) webapp container
   dspace:
     container_name: dspace
     environment:
@@ -35,7 +17,6 @@ services:
       # proxies.trusted.ipranges: This setting is required for a REST API running in Docker to trust requests
       # from the host machine. This IP range MUST correspond to the 'dspacenet' subnet defined above.
       # proxies__P__trusted__P__ipranges: '172.27.0' 
-      # rest__P__cors__P__allowed-origins: "$${dspace.ui.url}, localhost"
       LOGGING_CONFIG: /dspace/config/log4j2-container.xml
     # image: "${DOCKER_OWNER:-dspace}/dspace:${DSPACE_VER:-dspace-7_x-test}"
     image: "${DOCKER_OWNER:-dspace}/dspace:${DSPACE_VER:-dspace-7_x}"
@@ -140,7 +121,8 @@ services:
       DSPACE_UI_PORT: '4000'
       DSPACE_UI_NAMESPACE: /
       DSPACE_REST_SSL: 'true'
-      DSPACE_REST_HOST: dspace-beta.uea.edu.br
+      # DSPACE_REST_HOST: dspace-beta.uea.edu.br
+      DSPACE_REST_HOST: ri.fbnovas.edu.br
       DSPACE_REST_PORT: 443
       DSPACE_REST_NAMESPACE: /server
     image: dspace/dspace-angular:dspace-7_x-dist

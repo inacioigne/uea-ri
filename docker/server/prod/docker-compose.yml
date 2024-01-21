@@ -150,8 +150,8 @@ services:
     image: dspace/dspace-angular:dspace-7_x-dist
     build:
       context: ../../../frontend
-      # dockerfile: Dockerfile
-      dockerfile: Dockerfile.dist
+      dockerfile: Dockerfile
+      # dockerfile: Dockerfile.dist
     networks:
       networkuea:
     ports:

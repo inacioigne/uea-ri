@@ -14,7 +14,7 @@ USER dspace
 
 ADD --chown=dspace /api/ /app/
 
-RUN mvn clean && mvn -X -e package && \
+RUN mvn clean && mvn -U package && \
     mv /app/dspace/target/dspace-installer/* /install && \
     mvn clean
 
@@ -47,6 +47,6 @@ COPY --from=ant_build /dspace $DSPACE_INSTALL
 WORKDIR $DSPACE_INSTALL
 EXPOSE 8080
 ENV JAVA_OPTS=-Xmx2000m
-# ENTRYPOINT ["java", "-jar", "webapps/server-boot.jar", "--dspace.dir=$DSPACE_INSTALL"]
+ENTRYPOINT ["java", "-jar", "webapps/server-boot.jar", "--dspace.dir=$DSPACE_INSTALL"]
 
-CMD ["sleep", "infinity"]
+# CMD ["sleep", "infinity"]

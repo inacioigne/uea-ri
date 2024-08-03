@@ -10,6 +10,9 @@ services:
   api:
     container_name: dspace-api      
     image: dspace/dspace:${DSPACE_VERSION}
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
     build: 
       context: .
       dockerfile: api.dockerfile

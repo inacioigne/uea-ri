@@ -1,15 +1,14 @@
 networks:
-  dspacenet:
-    ipam:
-      config:
-        - subnet: 172.23.0.0/16
+  dockernet:
+    external: true
+  # dockernet:
+  #   ipam:
+  #     config:
+  #       - subnet: 172.23.0.0/16
 services:
   # Dspace API
   api:
-    container_name: dspace-api
-    # environment:
-    #   LOGGING_CONFIG: /api/dspace/config/log4j2-container.xml
-      
+    container_name: dspace-api      
     image: dspace/dspace:${DSPACE_VERSION}
     build: 
       context: .
@@ -19,7 +18,7 @@ services:
     depends_on:
       - dspacedb
     networks:
-      - dspacenet
+      - dockernet
     ports:
       - published: 8080
         target: 8080
@@ -47,7 +46,7 @@ services:
     env_file:
       - .env
     networks:
-      dspacenet:
+      dockernet:
     ports:
       - published: 5432
         target: 5432
@@ -65,7 +64,7 @@ services:
       additional_contexts: 
         solrconfigs: ./api/dspace/solr
     networks:
-      dspacenet:
+      dockernet:
     ports:
       - published: 8983
         target: 8983

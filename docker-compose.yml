@@ -1,0 +1,105 @@
+networks:
+  dspacenet:
+    ipam:
+      config:
+        - subnet: 172.23.0.0/16
+services:
+  # Dspace API
+  api:
+    container_name: dspace-api
+    # environment:
+    #   LOGGING_CONFIG: /api/dspace/config/log4j2-container.xml
+      
+    image: dspace/dspace:${DSPACE_VERSION}
+    build: 
+      context: .
+      dockerfile: api.dockerfile
+    env_file:
+      - .env
+    depends_on:
+      - dspacedb
+    networks:
+      - dspacenet
+    ports:
+      - published: 8080
+        target: 8080
+      - published: 8000
+        target: 8000
+    stdin_open: true
+    tty: true
+    volumes:
+    - assetstore:/dspace/assetstore
+    - ./api/dspace/config:/dspace/config
+    entrypoint:
+    - /bin/bash
+    - '-c'
+    - |
+      while (!</dev/tcp/dspacedb/5432) > /dev/null 2>&1; do sleep 1; done;
+      /dspace/bin/dspace database migrate
+      java -jar /dspace/webapps/server-boot.jar --dspace.dir=/dspace
+
+  # Banco de Dados
+  dspacedb:
+    container_name: dspacedb
+    image: dspace/dspace-postgres-pgcrypto:${DSPACE_VERSION}
+    build: 
+     context: ./docker/db/
+    env_file:
+      - .env
+    networks:
+      dspacenet:
+    ports:
+      - published: 5432
+        target: 5432
+    stdin_open: true
+    tty: true
+    volumes:
+      - pgdata:/pgdata
+
+  # DSpace Solr
+  dspacesolr:
+    container_name: dspacesolr
+    image: dspace/dspace-solr:${DSPACE_VERSION}
+    build:
+      context: ./docker/solr/
+      additional_contexts: 
+        solrconfigs: ./api/dspace/solr
+    networks:
+      dspacenet:
+    ports:
+      - published: 8983
+        target: 8983
+    stdin_open: true
+    tty: true
+    working_dir: /var/solr/data
+    volumes:
+      - solr_data:/var/solr/data
+    entrypoint:
+    - /bin/bash
+    - '-c'
+    - |
+      init-var-solr
+      precreate-core authority /opt/solr/server/solr/configsets/authority
+      cp -r /opt/solr/server/solr/configsets/authority/* authority
+      precreate-core oai /opt/solr/server/solr/configsets/oai
+      cp -r /opt/solr/server/solr/configsets/oai/* oai
+      precreate-core search /opt/solr/server/solr/configsets/search
+      cp -r /opt/solr/server/solr/configsets/search/* search
+      precreate-core statistics /opt/solr/server/solr/configsets/statistics
+      cp -r /opt/solr/server/solr/configsets/statistics/* statistics
+      precreate-core qaevent /opt/solr/server/solr/configsets/qaevent
+      cp -r /opt/solr/server/solr/configsets/qaevent/* qaevent
+      precreate-core suggestion /opt/solr/server/solr/configsets/suggestion
+      cp -r /opt/solr/server/solr/configsets/suggestion/* suggestion
+      exec solr -f
+volumes:
+  assetstore:
+  pgdata:
+  solr_data: 
+
+
+
+
+
+
+

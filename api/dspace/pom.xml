@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.dspace</groupId>
+    <artifactId>dspace</artifactId>
+    <name>DSpace Assembly and Configuration</name>
+    <packaging>pom</packaging>
+    <description>
+        The DSpace Project provides all the functionality required to
+        build, install and upgrade and dspace instance.
+    </description>
+    <!--
+       A Parent POM that Maven inherits DSpace Default
+       POM attributes from.
+    -->
+    <parent>
+        <groupId>org.dspace</groupId>
+        <artifactId>dspace-parent</artifactId>
+        <version>8.0</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <properties>
+        <!-- This is the path to the root [dspace-src] directory. -->
+        <root.basedir>${basedir}/..</root.basedir>
+    </properties>
+
+    <profiles>
+
+        <!-- Build Profile. This builds all Overlay modules for DSpace -->
+        <profile>
+            <id>build</id>
+            <activation>
+                <!-- Enabled as long as we are NOT creating a zip/tarball distribution -->
+                <property>
+                    <name>!distributions</name>
+                </property>
+            </activation>
+            <!-- Build all Overlay submodules -->
+            <modules>
+                <module>modules</module>
+            </modules>
+        </profile>
+
+        <!--
+            DSpace Assembly profile. By default this is enabled.
+            This profile actually builds all submodules and then assembles
+            the 'dspace-installer' from the resulting JARs/WARs.
+            See 'assembly.xml' for more info.
+            This profile can be optionally deactivated by passing '-P!assembly'.
+        -->
+        <profile>
+            <id>assembly</id>
+            <activation>
+                <!-- Enabled as long as we are NOT creating a zip/tarball distribution -->
+                <property>
+                    <name>!distributions</name>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                   <!-- Assemble 'target/dspace-installer' using 'assembly.xml' -->
+                   <plugin>
+                        <artifactId>maven-assembly-plugin</artifactId>
+                        <inherited>false</inherited>
+                        <configuration>
+                            <!-- Don't "attach" the assembly results to this project. As
+                                 this assembly builds a directory, setting this to "true"
+                                (default value) will just result in a WARNING message.-->
+                            <attach>false</attach>
+                            <finalName>${project.artifactId}</finalName>
+                            <descriptors>
+                                <descriptor>src/main/assembly/assembly.xml</descriptor>
+                            </descriptors>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>single</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!-- This profile simply determines whether we are creating
+             zip / tarball distributions to upload to SourceFore or similar.
+             By running "mvn package -Ddistributions=true" you'll
+             SKIP normal build & assembly (see above profiles) and
+             INSTEAD just run the "distributions" profile below. -->
+        <profile>
+            <id>build-and-assembly</id>
+            <activation>
+                <!-- This profile should be active at all times, unless the user
+                     specifies a different value for "distributions" -->
+                <property>
+                    <name>!distributions</name>
+                </property>
+            </activation>
+            <properties>
+                <distributions>false</distributions>
+            </properties>
+        </profile>
+
+
+        <!--
+            Run this profile (e.g. 'mvn package -Ddistributions=true') to create
+            zip / tarball distributions to upload to SourceForge or similar.
+            When this profile is run, DSpace is NOT compiled as normal.
+            Instead, a zip/tarball is generated from the parent [dspace-src] directory.
+        -->
+        <profile>
+           <id>distributions</id>
+           <activation>
+              <!-- Only enabled if "distributions=true" was passed on commandline -->
+              <property>
+                  <name>distributions</name>
+                  <value>true</value>
+              </property>
+           </activation>
+           <build>
+              <plugins>
+                 <plugin>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <inherited>false</inherited>
+                    <executions>
+                       <execution>
+                          <inherited>false</inherited>
+                          <configuration>
+                             <descriptors>
+                                <descriptor>src/main/assembly/release.xml</descriptor>
+                                <descriptor>src/main/assembly/src-release.xml</descriptor>
+                             </descriptors>
+                             <tarLongFileMode>gnu</tarLongFileMode>
+                             <finalName>dspace-${project.version}</finalName>
+                          </configuration>
+                          <phase>package</phase>
+                          <goals>
+                             <goal>single</goal>
+                          </goals>
+                       </execution>
+                    </executions>
+                 </plugin>
+              </plugins>
+           </build>
+        </profile>
+
+        <!-- Profile to aggregate (local) code coverage reports created by JaCoCo (jacoco.org)
+             during the Unit and Integration testing processes.
+             This plugin is disabled by default, as it is triggered by name in [src]/.travis.yml
+             See also jacoco-maven-plugin settings in Parent POM, as those
+             settings generate the module-specific reports that are aggregated here. -->
+        <profile>
+            <id>coverage-report</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <!-- Aggregate all test code coverage reports from the individual module coverage reports
+                         that are generated during unit & integration testing.
+                         Results (HTML and XML) are written to ./target/site/jacoco-aggregate/ -->
+                    <plugin>
+                        <groupId>org.jacoco</groupId>
+                        <artifactId>jacoco-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>aggregate-test-report</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>report-aggregate</goal>
+                                </goals>
+                                <configuration>
+                                    <!-- By default, JaCoCo will lookup all *.exec in the target folders of the Reactor Build Order -->
+                                    <!-- Sets the path to the files which contain the execution data. -->
+                                    <dataFileIncludes>
+                                        <dataFileInclude>**/jacoco-ut.exec</dataFileInclude>
+                                        <dataFileInclude>**/jacoco-it.exec</dataFileInclude>
+                                    </dataFileIncludes>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+            <dependencies>
+                <!-- Add all modules that should be taken into account for the coverage reports -->
+                <dependency>
+                    <groupId>org.dspace</groupId>
+                    <artifactId>dspace-api</artifactId>
+                    <scope>compile</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.dspace</groupId>
+                    <artifactId>dspace-oai</artifactId>
+                    <scope>compile</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.dspace</groupId>
+                    <artifactId>dspace-rdf</artifactId>
+                    <scope>compile</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.dspace</groupId>
+                    <artifactId>dspace-iiif</artifactId>
+                    <scope>compile</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.dspace</groupId>
+                    <artifactId>dspace-services</artifactId>
+                    <scope>compile</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.dspace</groupId>
+                    <artifactId>dspace-server-webapp</artifactId>
+                    <scope>compile</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.dspace</groupId>
+                    <artifactId>dspace-sword</artifactId>
+                    <scope>compile</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.dspace</groupId>
+                    <artifactId>dspace-swordv2</artifactId>
+                    <scope>compile</scope>
+                </dependency>
+            </dependencies>
+        </profile>
+    </profiles>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.dspace.modules</groupId>
+            <artifactId>additions</artifactId>
+            <scope>provided</scope>
+        </dependency>
+    	<!-- This dependency ensures DSpace OAI JAR is added to [dspace]/lib/,
+             so that the 'dspace oai' launcher.xml command works.  -->
+    	<dependency>
+            <groupId>org.dspace</groupId>
+            <artifactId>dspace-oai</artifactId>
+    	</dependency>
+
+        <!-- The Servlet API is also needed by the 'dspace oai' launcher.xml
+             command. -->
+    	<dependency>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+    	</dependency>
+    </dependencies>
+</project>

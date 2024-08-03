@@ -1,0 +1,20 @@
+## E-mail sent to designated address when a metadata update, registration
+## or reservation of a DOI fails.
+##
+## Parameters: {0} action (updating metadata of, registering or reserving)
+##             {1} Date & Time
+##             {2} resource type text
+##             {3} resource id
+##             {4} DOI
+##             {5} reason
+##
+## See org.dspace.core.Email for information on the format of this file.
+##
+#set($subject = "${config.get('dspace.name')}: Error ${params[0]} DOI ${params[3]}")
+
+Date:    ${params[1]}
+
+${params[0]} DOI ${params[4]} for ${params[2]} with ID ${params[3]} failed:
+${params[5]}
+
+The ${config.get('dspace.name')} Team

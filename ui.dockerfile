@@ -4,10 +4,10 @@ RUN apk add --update python3 make g++ \
     && rm -rf /var/cache/apk/*
 
 WORKDIR /app
-COPY package.json yarn.lock ./
+COPY ui/package.json ui/yarn.lock ./
 RUN yarn install --network-timeout 300000
 
-ADD . /app/
+ADD ./ui /app/
 RUN yarn build:prod
 
 FROM node:18-alpine

@@ -1,6 +1,6 @@
-networks:
-  dockernet:
-    external: true
+# networks:
+#   dockernet:
+#     external: true
   # dockernet:
   #   ipam:
   #     config:
@@ -20,8 +20,8 @@ services:
       - .env
     depends_on:
       - dspacedb
-    networks:
-      - dockernet
+    # networks:
+    #   - dockernet
     ports:
       - published: 8080
         target: 8080
@@ -48,8 +48,8 @@ services:
      context: ./docker/db/
     env_file:
       - .env
-    networks:
-      dockernet:
+    # networks:
+    #   dockernet:
     ports:
       - published: 5432
         target: 5432
@@ -66,8 +66,8 @@ services:
       context: ./docker/solr/
       additional_contexts: 
         solrconfigs: ./api/dspace/solr
-    networks:
-      dockernet:
+    # networks:
+    #   dockernet:
     ports:
       - published: 8983
         target: 8983

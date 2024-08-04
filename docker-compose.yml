@@ -1,44 +1,44 @@
 networks:
   dockernet:
-    # external: true
+    external: true
   # dockernet:
   #   ipam:
   #     config:
   #       - subnet: 172.23.0.0/16
 services:
   # Dspace API
-  # api:
-  #   container_name: dspace-api      
-  #   image: dspace/dspace:${DSPACE_VERSION}
-  #   dns:
-  #     - 8.8.8.8
-  #     - 8.8.4.4
-  #   build: 
-  #     context: .
-  #     dockerfile: api.dockerfile
-  #   env_file:
-  #     - .env
-  #   depends_on:
-  #     - dspacedb
-  #   networks:
-  #     - dockernet
-  #   ports:
-  #     - published: 8080
-  #       target: 8080
-  #     - published: 8000
-  #       target: 8000
-  #   stdin_open: true
-  #   tty: true
-  #   volumes:
-  #   - assetstore:/dspace/assetstore
-  #   - ./api/dspace/config:/dspace/config
-  #   entrypoint:
-  #   - /bin/bash
-  #   - '-c'
-  #   - |
-  #     while (!</dev/tcp/dspacedb/5432) > /dev/null 2>&1; do sleep 1; done;
-  #     /dspace/bin/dspace database migrate
-  #     java -jar /dspace/webapps/server-boot.jar --dspace.dir=/dspace
+  api:
+    container_name: dspace-api      
+    image: dspace/dspace:${DSPACE_VERSION}
+    # dns:
+    #   - 8.8.8.8
+    #   - 8.8.4.4
+    build: 
+      context: .
+      dockerfile: api.dockerfile
+    env_file:
+      - .env
+    depends_on:
+      - dspacedb
+    networks:
+      - dockernet
+    ports:
+      - published: 8080
+        target: 8080
+      - published: 8000
+        target: 8000
+    stdin_open: true
+    tty: true
+    volumes:
+    - assetstore:/dspace/assetstore
+    - ./api/dspace/config:/dspace/config
+    entrypoint:
+    - /bin/bash
+    - '-c'
+    - |
+      while (!</dev/tcp/dspacedb/5432) > /dev/null 2>&1; do sleep 1; done;
+      /dspace/bin/dspace database migrate
+      java -jar /dspace/webapps/server-boot.jar --dspace.dir=/dspace
 
   # Banco de Dados
   dspacedb:

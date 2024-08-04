@@ -1,18 +1,32 @@
-# networks:
-#   dockernet:
-#     external: true
+networks:
+  dockernet:
+    external: true
   # dockernet:
   #   ipam:
   #     config:
   #       - subnet: 172.23.0.0/16
 services:
+  # Dspace UI
+  ui:
+    container_name: dspace-ui
+    image: dspace/dspace-angular:${DSPACE_VERSION}-dist
+    build: 
+      context: .
+      dockerfile: ui.dockerfile
+    env_file:
+      - .env
+    networks:
+      - dockernet
+    ports:
+    - published: 4000
+      target: 4000
+    stdin_open: true
+    tty: true
+
   # Dspace API
   api:
     container_name: dspace-api      
     image: dspace/dspace:${DSPACE_VERSION}
-    # dns:
-    #   - 8.8.8.8
-    #   - 8.8.4.4
     build: 
       context: .
       dockerfile: api.dockerfile
@@ -20,8 +34,8 @@ services:
       - .env
     depends_on:
       - dspacedb
-    # networks:
-    #   - dockernet
+    networks:
+      - dockernet
     ports:
       - published: 8080
         target: 8080
@@ -48,8 +62,8 @@ services:
      context: ./docker/db/
     env_file:
       - .env
-    # networks:
-    #   dockernet:
+    networks:
+      dockernet:
     ports:
       - published: 5432
         target: 5432
@@ -66,8 +80,8 @@ services:
       context: ./docker/solr/
       additional_contexts: 
         solrconfigs: ./api/dspace/solr
-    # networks:
-    #   dockernet:
+    networks:
+      dockernet:
     ports:
       - published: 8983
         target: 8983

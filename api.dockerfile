@@ -14,7 +14,7 @@ USER dspace
 
 ADD --chown=dspace /api/ /app/
 
-RUN mvn clean && mvn -U package && \
+RUN mvn -U package && \
     mv /app/dspace/target/dspace-installer/* /install && \
     mvn clean
 

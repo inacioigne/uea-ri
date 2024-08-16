@@ -5,6 +5,12 @@
   <!-- TODO remove navbar-container class when https://github.com/twbs/bootstrap/issues/24726 is fixed -->
   <div class="navbar-inner-container w-100" [class.container]="(isMobile$ | async) !== true">
     <div class="w-100">
+      <a class="navbar-brand my-2" routerLink="/home">
+        <img
+          src="assets/uea/images/logo_header_uea.png"
+          [attr.alt]="'menu.header.image.logo' | translate"
+        />
+      </a>
       <div id="collapsingNav">
         <ng-container *ngIf="(isMobile$ | async) && (isAuthenticated$ | async)">
           <ds-user-menu [inExpandableNavbar]="true"></ds-user-menu>
@@ -14,6 +20,26 @@
             <ng-container
               *ngComponentOutlet="(sectionMap$ | async).get(section.id)?.component; injector: (sectionMap$ | async).get(section.id)?.injector;"></ng-container>
           </ng-container>
+           <!-- Políticas UEA -->
+        <li class="uea-dropdown">
+          <div class="dropdown">
+            <button
+              class="btn btn-secondary dropdown-toggle"
+              type="button"
+              data-toggle="dropdown"
+              (click)="toggleDropdown()"
+              aria-expanded="true"
+            >
+              Políticas
+            </button>
+           
+            <div class="dropdown-menu" id="uea-dropdown-menu">
+              <a class="dropdown-item" href="/assets/uea/static/resolucao_repositorio.pdf">Política do Repositório</a>
+              <a class="dropdown-item" href="/assets/uea/static/TermodeAutorizacaoDigital.docx">Termo de autorização</a>
+            </div>
+          </div>
+        </li>
+
         </div>
       </div>
     </div>

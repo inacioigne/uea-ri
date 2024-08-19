@@ -1,5 +1,9 @@
-rest:
-  ssl: true
-  host: sandbox.dspace.org
-  port: 443
-  nameSpace: /server
+# rest:
+#   ssl: true
+#   host: sandbox.dspace.org
+#   port: 443
+#   nameSpace: /server
+
+# Theme Config
+themes:
+  - name: 'uea'

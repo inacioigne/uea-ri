@@ -112,10 +112,3 @@ volumes:
   assetstore:
   pgdata:
   solr_data: 
-
-
-
-
-
-
-

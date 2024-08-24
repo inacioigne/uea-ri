@@ -1,7 +1,7 @@
 networks:
   dspacebuild:
   dockernet:
-    external: true
+    # external: true
   # dockernet:
   #   ipam:
   #     config:
@@ -18,8 +18,8 @@ services:
     env_file:
       - .env
     networks:
-      #  - dockernet
-       - dspacebuild
+       - dockernet
+      #  - dspacebuild
     ports:
     - published: 4000
       target: 4000

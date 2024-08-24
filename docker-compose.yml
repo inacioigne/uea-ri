@@ -1,4 +1,5 @@
 networks:
+  dspacebuild:
   dockernet:
     external: true
   # dockernet:

@@ -16,9 +16,9 @@ services:
       # network: host
     env_file:
       - .env
-    # networks:
-    #    - dockernet
-      # - host
+    networks:
+      #  - dockernet
+       - dspacebuild
     ports:
     - published: 4000
       target: 4000

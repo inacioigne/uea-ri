@@ -13,11 +13,12 @@ services:
     build:
       context: .
       dockerfile: ui.dockerfile
+      network: host
     env_file:
       - .env
     networks:
-      #  - dockernet
-      - host
+       - dockernet
+      # - host
     ports:
     - published: 4000
       target: 4000

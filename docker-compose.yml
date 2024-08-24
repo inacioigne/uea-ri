@@ -10,13 +10,13 @@ services:
   ui:
     container_name: dspace-ui
     image: dspace/dspace-angular:${DSPACE_VERSION}-dist
-    build: 
+    build:
       context: .
       dockerfile: ui.dockerfile
-    # network_mode: "host"
+    network_mode: "host"
     env_file:
       - .env
-    # networks:
+    #networks:
     #   - dockernet
     ports:
     - published: 4000
@@ -26,9 +26,9 @@ services:
 
   # Dspace API
   api:
-    container_name: dspace-api      
+    container_name: dspace-api
     image: dspace/dspace:${DSPACE_VERSION}
-    build: 
+    build:
       context: .
       dockerfile: api.dockerfile
     env_file:

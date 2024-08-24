@@ -1,5 +1,5 @@
 networks:
-  # dspacebuild:
+  dspacebuild:
   dockernet:
     external: true
   # dockernet:
@@ -19,7 +19,7 @@ services:
       - .env
     networks:
       #  - dockernet
-       - ficha-catalografica_ficha_network
+       - dspacebuild
     ports:
     - published: 4000
       target: 4000

@@ -13,7 +13,7 @@ services:
     build:
       context: .
       dockerfile: ui.dockerfile
-      network: host
+      # network: host
     env_file:
       - .env
     # networks:

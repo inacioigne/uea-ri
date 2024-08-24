@@ -16,7 +16,8 @@ services:
     env_file:
       - .env
     networks:
-       - dockernet
+      #  - dockernet
+      - host
     ports:
     - published: 4000
       target: 4000

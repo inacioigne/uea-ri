@@ -35,7 +35,7 @@ services:
       context: .
       dockerfile: api.dockerfile
     env_file:
-      - .env
+      - .env_prod
     depends_on:
       - dspacedb
     networks:

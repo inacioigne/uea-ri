@@ -3,6 +3,7 @@
 # Função para mostrar o menu
 api_reacreate() {
     echo "Recriando API:"
+    docker compose -f ./docker-compose.yml up -d --force-recreate api
 }
 
 api_logs() {

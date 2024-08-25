@@ -15,7 +15,7 @@ services:
       context: .
       # dockerfile: ui.dockerfile
       dockerfile: ui-dist.dockerfile
-      # network: host
+      network: "host"
     env_file:
       - .env
     networks:

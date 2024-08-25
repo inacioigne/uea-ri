@@ -1,7 +1,7 @@
 rest:
-  ssl: false
-  host: localhost
-  port: 8080
+  ssl: true
+  host: ri.uea.edu.br
+  port: 443
   nameSpace: /server
 
 # Theme Config

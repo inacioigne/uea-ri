@@ -11,6 +11,11 @@ api_logs() {
     docker compose -f ./docker-compose.yml logs api
 }
 
+ui_build() {
+    echo "Recriando Frontend:"
+    docker compose -f ./docker-compose.yml build ui
+}
+
 ui_recreate() {
     echo "Recriando Frontend:"
     docker compose -f ./docker-compose.yml up -d --force-recreate ui

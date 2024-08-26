@@ -16,6 +16,11 @@ ui_recreate() {
     docker compose -f ./docker-compose.yml up -d --force-recreate ui
 }
 
+ui_logs() {
+    echo "Logs Frontend:"
+    docker compose -f ./docker-compose.yml logs ui
+}
+
 
 if [ -z "$1" ]; then
     echo "Erro: Nenhuma função fornecida."

@@ -10,8 +10,8 @@ services:
     image: dspace/dspace-angular:${DSPACE_VERSION}-dist
     build:
       context: .
-      # dockerfile: ui.dockerfile
-      dockerfile: ui-dist.dockerfile
+      dockerfile: ui.dockerfile
+      # dockerfile: ui-dist.dockerfile
       network: "host"
     env_file:
       - .env_prod

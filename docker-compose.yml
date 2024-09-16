@@ -14,7 +14,7 @@ services:
       dockerfile: ui-dist.dockerfile
       network: "host"
     env_file:
-      - .env
+      - .env_prod
     networks:
        - dockernet
       #  - dspacebuild

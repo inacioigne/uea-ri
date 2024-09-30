@@ -81,7 +81,7 @@
                     <dc-element>contributor</dc-element>
                     <dc-qualifier>co-advisor</dc-qualifier>
                     <repeatable>true</repeatable>
-                    <label>Orientador</label>
+                    <label>Coorientador</label>
                     <input-type>onebox</input-type>
                     <hint>Entre com o nome do coorientador.</hint>
                     <required></required>
@@ -233,7 +233,7 @@
                     <dc-element>language</dc-element>
                     <dc-qualifier>iso</dc-qualifier>
                     <repeatable>false</repeatable>
-                    <label>Language</label>
+                    <label>Idioma</label>
                     <input-type value-pairs-name="common_iso_languages">dropdown</input-type>
                     <hint>Selecione o idioma do conteúdo principal do item. Se o idioma não aparecer na
                     lista, selecione 'Outro'. Se o conteúdo não tiver realmente um idioma (por exemplo, se for
@@ -279,7 +279,7 @@
                     <dc-element>description</dc-element>
                     <dc-qualifier>abstract</dc-qualifier>
                     <repeatable>false</repeatable>
-                    <label>Resumo</label>
+                    <label>Abstract</label>
                     <input-type>textarea</input-type>
                     <hint>Insira o resumo do item</hint>
                     <required></required>
@@ -306,6 +306,18 @@
                     <label>Referência</label>
                     <input-type>textarea</input-type>
                     <hint>Coloque as referências do item.</hint>
+                    <required></required>
+                </field>
+            </row>
+             <row>
+                <field>
+                    <dc-schema>dc</dc-schema>
+                    <dc-element>description</dc-element>
+                    <dc-qualifier>sponsorship</dc-qualifier>
+                    <repeatable>false</repeatable>
+                    <label>Agência de Fomento</label>
+                    <input-type>textarea</input-type>
+                    <hint>Insira a Agência de Fomento</hint>
                     <required></required>
                 </field>
             </row>
@@ -448,7 +460,7 @@
                     <dc-element>language</dc-element>
                     <dc-qualifier>iso</dc-qualifier>
                     <repeatable>false</repeatable>
-                    <label>Language</label>
+                    <label>Idioma</label>
                     <input-type value-pairs-name="common_iso_languages">dropdown</input-type>
                     <hint>Select the language of the main content of the item. If the language does not appear in the
                         list, please select 'Other'. If the content does not really have a language (for example, if it

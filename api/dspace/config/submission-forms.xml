@@ -66,6 +66,54 @@
             <row>
                 <field>
                     <dc-schema>dc</dc-schema>
+                    <dc-element>contributor</dc-element>
+                    <dc-qualifier>advisor</dc-qualifier>
+                    <repeatable></repeatable>
+                    <label>Orientador</label>
+                    <input-type>onebox</input-type>
+                    <hint>Entre com o nome do orientador.</hint>
+                    <required></required>
+                </field>
+            </row>
+            <row>
+                <field>
+                    <dc-schema>dc</dc-schema>
+                    <dc-element>contributor</dc-element>
+                    <dc-qualifier>co-advisor</dc-qualifier>
+                    <repeatable>true</repeatable>
+                    <label>Orientador</label>
+                    <input-type>onebox</input-type>
+                    <hint>Entre com o nome do coorientador.</hint>
+                    <required></required>
+                </field>
+            </row>
+            <row>
+                <field>
+                    <dc-schema>dc</dc-schema>
+                    <dc-element>contributor</dc-element>
+                    <dc-qualifier>referee</dc-qualifier>
+                    <repeatable>true</repeatable>
+                    <label>Membro de Banca</label>
+                    <input-type>onebox</input-type>
+                    <hint>Entre com o nome do Membro de Banca.</hint>
+                    <required></required>
+                </field>
+            </row>
+            <row>
+                <field>
+                    <dc-schema>dc</dc-schema>
+                    <dc-element>contributor</dc-element>
+                    <dc-qualifier>lattes</dc-qualifier>
+                    <repeatable>true</repeatable>
+                    <label>Lattes do autor</label>
+                    <input-type>onebox</input-type>
+                    <hint>Entre com o lattes do autor.</hint>
+                    <required></required>
+                </field>
+            </row>
+            <row>
+                <field>
+                    <dc-schema>dc</dc-schema>
                     <dc-element>title</dc-element>
                     <dc-qualifier></dc-qualifier>
                     <repeatable>false</repeatable>
@@ -114,6 +162,20 @@
                     <required></required>
                 </field>
             </row>
+            <row>
+            <field>
+                    <dc-schema>dc</dc-schema>
+                    <dc-element>publisher</dc-element>
+                    <dc-qualifier>program</dc-qualifier>
+                    <repeatable>false</repeatable>
+                    <label>Programa de Pós-Graduação</label>
+                    <!-- <style>col-sm-8</style> -->
+                    <input-type>onebox</input-type>
+                    <hint>Insira o nome do Programa de Pós-Graduação</hint>
+                    <required></required>
+                </field>
+            </row>
+
             <row>
                 <field>
                     <dc-schema>dc</dc-schema>
@@ -174,8 +236,8 @@
                     <label>Language</label>
                     <input-type value-pairs-name="common_iso_languages">dropdown</input-type>
                     <hint>Selecione o idioma do conteúdo principal do item. Se o idioma não aparecer na
-lista, selecione 'Outro'. Se o conteúdo não tiver realmente um idioma (por exemplo, se for
-um conjunto de dados ou uma imagem), selecione 'N/A'.
+                    lista, selecione 'Outro'. Se o conteúdo não tiver realmente um idioma (por exemplo, se for
+                    um conjunto de dados ou uma imagem), selecione 'N/A'.
                     </hint>
                     <required></required>
                 </field>
@@ -190,7 +252,6 @@ um conjunto de dados ou uma imagem), selecione 'N/A'.
                     <dc-schema>dc</dc-schema>
                     <dc-element>subject</dc-element>
                     <dc-qualifier></dc-qualifier>
-                    <!-- An input-type of tag MUST be marked as repeatable -->
                     <repeatable>true</repeatable>
                     <label>Assunto</label>
                     <input-type>tag</input-type>
@@ -199,6 +260,19 @@ um conjunto de dados ou uma imagem), selecione 'N/A'.
                     <vocabulary>srsc</vocabulary>
                 </field>
             </row>
+            <!-- <row>
+                <field>
+                    <dc-schema>dc</dc-schema>
+                    <dc-element>subject</dc-element>
+                    <dc-qualifier>cnpq</dc-qualifier>
+                    <repeatable>true</repeatable>
+                    <label>Área do CNPQ</label>
+                    <input-type>tag</input-type>
+                    <hint>Insira o assunto do item.</hint>
+                    <required></required>
+                    <vocabulary>srsc</vocabulary>
+                </field>
+            </row> -->
             <row>
                 <field>
                     <dc-schema>dc</dc-schema>
@@ -211,30 +285,30 @@ um conjunto de dados ou uma imagem), selecione 'N/A'.
                     <required></required>
                 </field>
             </row>
-            <!-- <row>
+            <row>
                 <field>
                     <dc-schema>dc</dc-schema>
                     <dc-element>description</dc-element>
-                    <dc-qualifier>sponsorship</dc-qualifier>
+                    <dc-qualifier>resumo</dc-qualifier>
                     <repeatable>false</repeatable>
-                    <label>Sponsors</label>
+                    <label>Resumo</label>
                     <input-type>textarea</input-type>
-                    <hint>Enter the names of any sponsors and/or funding codes in the box.</hint>
+                    <hint>Insira o resumo do item.</hint>
                     <required></required>
                 </field>
             </row> 
             <row>
                 <field>
                     <dc-schema>dc</dc-schema>
-                    <dc-element>description</dc-element>
-                    <dc-qualifier></dc-qualifier>
+                    <dc-element>relation</dc-element>
+                    <dc-qualifier>references</dc-qualifier>
                     <repeatable>false</repeatable>
-                    <label>Description</label>
+                    <label>Referência</label>
                     <input-type>textarea</input-type>
-                    <hint>Enter any other description or comments in this box.</hint>
+                    <hint>Coloque as referências do item.</hint>
                     <required></required>
                 </field>
-            </row>-->
+            </row>
         </form>
 
 

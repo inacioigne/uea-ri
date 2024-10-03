@@ -28,7 +28,21 @@ import { ImpersonateNavbarComponent } from '../../../../app/shared/impersonate-n
   templateUrl: './navbar.component.html',
   animations: [slideMobileNav],
   standalone: true,
-  imports: [NgbDropdownModule, ThemedLangSwitchComponent, ThemedSearchNavbarComponent, NgClass, RouterLink, NgIf, NgFor, NgComponentOutlet, ContextHelpToggleComponent, ThemedAuthNavMenuComponent, ImpersonateNavbarComponent, AsyncPipe, TranslateModule, ThemedUserMenuComponent],
+  imports: [
+    NgbDropdownModule, 
+    ThemedLangSwitchComponent, 
+    ThemedSearchNavbarComponent, 
+    NgClass, 
+    RouterLink, 
+    NgIf, 
+    NgFor, 
+    NgComponentOutlet, 
+    ContextHelpToggleComponent, 
+    ThemedAuthNavMenuComponent, 
+    ImpersonateNavbarComponent, 
+    AsyncPipe, 
+    TranslateModule, 
+    ThemedUserMenuComponent],
 })
 export class NavbarComponent extends BaseComponent {
 }

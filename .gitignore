@@ -2,3 +2,4 @@
 .env_prod
 dist.zip
 /dist
+/GeoLite2-City/GeoLite2-City.mmdb

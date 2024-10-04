@@ -44,6 +44,7 @@ FROM eclipse-temurin:${JDK_VERSION}
 ENV DSPACE_INSTALL=/dspace
 
 COPY --from=ant_build /dspace $DSPACE_INSTALL
+ADD /GeoLite2-City/GeoLite2-City.mmdb $DSPACE_INSTALL
 WORKDIR $DSPACE_INSTALL
 EXPOSE 8080
 ENV JAVA_OPTS=-Xmx2000m

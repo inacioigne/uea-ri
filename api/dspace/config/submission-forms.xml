@@ -4,22 +4,6 @@
 
 <input-forms>
 
-    <!-- The form-definitions map lays out the detailed definition of all the -->
-    <!-- submission forms. Each separate form set has a unique name as an     -->
-    <!-- attribute. This name matches one of the names in the form-map. One   -->
-    <!-- named form set has the name "traditional"; as this name suggests,    -->
-    <!-- it is the old style and is also the default, which gets used when    -->
-    <!-- the specified collection has no correspondingly-named form set.      -->
-    <!--                                                                      -->
-    <!-- Each form set contains an ordered set of pages; each page defines    -->
-    <!-- one submission metadata entry screen. Each page has an ordered list  -->
-    <!-- of field definitions, Each field definition corresponds to one       -->
-    <!-- metadata entry (a so-called row), which has a DC element name, a     -->
-    <!-- displayed label, a text string prompt which is called a hint, and    -->
-    <!-- an input-type. Each field also may hold optional elements: DC        -->
-    <!-- qualifier name, a repeatable flag, and a text string whose presence  -->
-    <!-- serves as a 'this field is required' flag.                           -->
-
     <form-definitions>
         <!-- Form used for entering in Bitstream/File metadata after uploading a file -->
         <form name="bitstream-metadata">
@@ -54,63 +38,17 @@
             <row>
                 <field>
                     <dc-schema>dc</dc-schema>
-                    <dc-element>contributor</dc-element>
-                    <dc-qualifier>author</dc-qualifier>
-                    <repeatable>true</repeatable>
-                    <label>Autor</label>
-                    <input-type>onebox</input-type>
-                    <hint>Entre com o nome do autor.</hint>
-                    <required></required>
+                    <dc-element>type</dc-element>
+                    <dc-qualifier></dc-qualifier>
+                    <repeatable>false</repeatable>
+                    <label>Tipo</label>
+                    <input-type value-pairs-name="common_types">dropdown</input-type>
+                    <hint>Selecione o tipo de conteúdo do item.
+                    </hint>
+                    <required>CAMPO OBRIGATÓRIO: Você deve escolher pelo menos um tipo.</required>
                 </field>
             </row>
-            <row>
-                <field>
-                    <dc-schema>dc</dc-schema>
-                    <dc-element>contributor</dc-element>
-                    <dc-qualifier>advisor</dc-qualifier>
-                    <repeatable></repeatable>
-                    <label>Orientador</label>
-                    <input-type>onebox</input-type>
-                    <hint>Entre com o nome do orientador.</hint>
-                    <required></required>
-                </field>
-            </row>
-            <row>
-                <field>
-                    <dc-schema>dc</dc-schema>
-                    <dc-element>contributor</dc-element>
-                    <dc-qualifier>co-advisor</dc-qualifier>
-                    <repeatable>true</repeatable>
-                    <label>Coorientador</label>
-                    <input-type>onebox</input-type>
-                    <hint>Entre com o nome do coorientador.</hint>
-                    <required></required>
-                </field>
-            </row>
-            <row>
-                <field>
-                    <dc-schema>dc</dc-schema>
-                    <dc-element>contributor</dc-element>
-                    <dc-qualifier>referee</dc-qualifier>
-                    <repeatable>true</repeatable>
-                    <label>Membro de Banca</label>
-                    <input-type>onebox</input-type>
-                    <hint>Entre com o nome do Membro de Banca.</hint>
-                    <required></required>
-                </field>
-            </row>
-            <row>
-                <field>
-                    <dc-schema>dc</dc-schema>
-                    <dc-element>contributor</dc-element>
-                    <dc-qualifier>lattes</dc-qualifier>
-                    <repeatable>true</repeatable>
-                    <label>Lattes do autor</label>
-                    <input-type>onebox</input-type>
-                    <hint>Entre com o lattes do autor.</hint>
-                    <required></required>
-                </field>
-            </row>
+
             <row>
                 <field>
                     <dc-schema>dc</dc-schema>
@@ -120,9 +58,10 @@
                     <label>Título</label>
                     <input-type>onebox</input-type>
                     <hint>Entre com o título do item</hint>
-                    <required>O título é obrigatório</required>
+                    <required>CAMPO OBRIGATÓRIO: Informe o título do documento.</required>
                 </field>
             </row>
+
             <row>
                 <field>
                     <dc-schema>dc</dc-schema>
@@ -131,10 +70,11 @@
                     <repeatable>true</repeatable>
                     <label>Título alternativo</label>
                     <input-type>onebox</input-type>
-                    <hint>Entre com outros títulos do item</hint>
+                    <hint>CAMPO OPCIONAL: Informe o título alternativo. Recomenda-se preencher com a tradução do título da tese ou dissertação para o inglês, para maior visibilidade do documento.</hint>
                     <required></required>
                 </field>
             </row>
+
             <row>
                 <field>
                     <dc-schema>dc</dc-schema>
@@ -150,20 +90,103 @@
                     <required>Entre pelo menos com o ano de publicação do item.</required>
                 </field>
 
+                
+            </row>
+
+
+
+            <row>
                 <field>
                     <dc-schema>dc</dc-schema>
-                    <dc-element>publisher</dc-element>
-                    <dc-qualifier></dc-qualifier>
-                    <repeatable>false</repeatable>
-                    <label>Editor</label>
-                    <style>col-sm-8</style>
+                    <dc-element>contributor</dc-element>
+                    <dc-qualifier>author</dc-qualifier>
+                    <repeatable>true</repeatable>
+                    <label>Autor</label>
                     <input-type>onebox</input-type>
-                    <hint>Insira o nome do editor deste item</hint>
+                    <hint>Entre com o nome do autor.</hint>
+                    <required>CAMPO OBRIGATÓRIO: Informe o nome do autor, conforme o formato de citação.</required>
+                </field>
+            </row>
+
+            <row>
+                <field>
+                    <dc-schema>dc</dc-schema>
+                    <dc-element>contributor</dc-element>
+                    <dc-qualifier>author-lattes</dc-qualifier>
+                    <repeatable>true</repeatable>
+                    <label>Lattes do Autor</label>
+                    <input-type>onebox</input-type>
+                    <hint>CAMPO OPCIONAL: Informe a URL do currículo lattes do autor.</hint>
                     <required></required>
                 </field>
             </row>
+
             <row>
-            <field>
+                <field>
+                    <dc-schema>dc</dc-schema>
+                    <dc-element>contributor</dc-element>
+                    <dc-qualifier>advisor</dc-qualifier>
+                    <repeatable></repeatable>
+                    <label>Orientador</label>
+                    <input-type>onebox</input-type>
+                    <hint>Informe o nome do primeiro orientador, conforme o formato de citação.</hint>
+                    <required></required>
+                </field>
+            </row>
+
+            <row>
+                <field>
+                    <dc-schema>dc</dc-schema>
+                    <dc-element>contributor</dc-element>
+                    <dc-qualifier>co-advisor</dc-qualifier>
+                    <repeatable>true</repeatable>
+                    <label>Coorientador</label>
+                    <input-type>onebox</input-type>
+                    <hint>CAMPO OPCIONAL: Informe o nome do coorientador, conforme o formato de citação.</hint>
+                    <required></required>
+                </field>
+            </row>
+
+            <row>
+                <field>
+                    <dc-schema>dc</dc-schema>
+                    <dc-element>contributor</dc-element>
+                    <dc-qualifier>referee</dc-qualifier>
+                    <repeatable>true</repeatable>
+                    <label>Membro de Banca</label>
+                    <input-type>onebox</input-type>
+                    <hint>CAMPO OPCIONAL: Informe o nome dos membros da banca, conforme o formato de citação.</hint>
+                    <required></required>
+                </field>
+            </row>   
+
+            <row>
+                <field>
+                    <dc-schema>dc</dc-schema>
+                    <dc-element>publisher</dc-element>
+                    <input-type value-pairs-name="common_publisher">dropdown</input-type>
+                    <dc-qualifier></dc-qualifier>
+                    <repeatable>false</repeatable>
+                    <label>Editor</label>
+                    <style>col-sm-10</style>
+                    <hint>Insira o nome do editor deste item</hint>
+                    <required>CAMPO OBRIGATÓRIO: Nome da instituição por extenso.</required>
+                </field>
+                <field>
+                    <dc-schema>dc</dc-schema>
+                    <dc-element>publisher</dc-element>
+                    <dc-qualifier>initials</dc-qualifier>
+                    <input-type value-pairs-name="common_publisher-initials">dropdown</input-type>
+                    <repeatable>false</repeatable>
+                    <label>Sigla da instituição</label>
+                    <style>col-sm-2</style>
+                    <hint>Insira o nome do editor deste item</hint>
+                    <required>CAMPO OBRIGATÓRIO: Sigla da instituição.</required>
+                </field>
+            </row>         
+
+            <row>
+                <field>
                     <dc-schema>dc</dc-schema>
                     <dc-element>publisher</dc-element>
                     <dc-qualifier>program</dc-qualifier>
@@ -173,6 +196,7 @@
                     <input-type>onebox</input-type>
                     <hint>Insira o nome do Programa de Pós-Graduação</hint>
                     <required></required>
+                     <type-bind>Dissertação,Tese</type-bind>
                 </field>
             </row>
 
@@ -214,19 +238,9 @@
                     <required></required>
                 </field>
             </row>
-            <row>
-                <field>
-                    <dc-schema>dc</dc-schema>
-                    <dc-element>type</dc-element>
-                    <dc-qualifier></dc-qualifier>
-                    <repeatable>true</repeatable>
-                    <label>Tipo</label>
-                    <input-type value-pairs-name="common_types">dropdown</input-type>
-                    <hint>Selecione o tipo de conteúdo do item.
-                    </hint>
-                    <required>Você deve escolher pelo menos um tipo.</required>
-                </field>
-            </row>
+
+            
+
             <row>
                 <field>
                     <dc-schema>dc</dc-schema>
@@ -528,16 +542,16 @@
                     <hint>Enter the birth date of the person</hint>
                 </field>
             </row>
-<!--            <row>-->
-<!--                <field>-->
-<!--                    <dc-schema>person</dc-schema>-->
-<!--                    <dc-element>identifier</dc-element>-->
-<!--                    <dc-qualifier>staffid</dc-qualifier>-->
-<!--                    <label>Staff ID</label>-->
-<!--                    <input-type>onebox</input-type>-->
-<!--                    <hint>Enter the staff id of the person</hint>-->
-<!--                </field>-->
-<!--            </row>-->
+            <!--            <row>-->
+            <!--                <field>-->
+            <!--                    <dc-schema>person</dc-schema>-->
+            <!--                    <dc-element>identifier</dc-element>-->
+            <!--                    <dc-qualifier>staffid</dc-qualifier>-->
+            <!--                    <label>Staff ID</label>-->
+            <!--                    <input-type>onebox</input-type>-->
+            <!--                    <hint>Enter the staff id of the person</hint>-->
+            <!--                </field>-->
+            <!--            </row>-->
             <row>
                 <field>
                     <dc-schema>person</dc-schema>
@@ -569,36 +583,36 @@
                     <hint>Enter the id of the project</hint>
                 </field>
             </row>
-<!--            <row>-->
-<!--                <field>-->
-<!--                    <dc-schema>project</dc-schema>-->
-<!--                    <dc-element>identifier</dc-element>-->
-<!--                    <dc-qualifier>status</dc-qualifier>-->
-<!--                    <label>Status</label>-->
-<!--                    <input-type value-pairs-name="project_status">dropdown</input-type>-->
-<!--                    <hint>Enter the status of the project</hint>-->
-<!--                </field>-->
-<!--            </row>-->
-<!--            <row>-->
-<!--                <field>-->
-<!--                    <dc-schema>project</dc-schema>-->
-<!--                    <dc-element>identifier</dc-element>-->
-<!--                    <dc-qualifier>startdate</dc-qualifier>-->
-<!--                    <label>Start date</label>-->
-<!--                    <input-type>date</input-type>-->
-<!--                    <hint>Enter the start date of the project</hint>-->
-<!--                </field>-->
-<!--            </row>-->
-<!--            <row>-->
-<!--                <field>-->
-<!--                    <dc-schema>project</dc-schema>-->
-<!--                    <dc-element>identifier</dc-element>-->
-<!--                    <dc-qualifier>expectedcompletion</dc-qualifier>-->
-<!--                    <label>Expected Completion</label>-->
-<!--                    <input-type>date</input-type>-->
-<!--                    <hint>Enter the expected completion date of the project</hint>-->
-<!--                </field>-->
-<!--            </row>-->
+            <!--            <row>-->
+            <!--                <field>-->
+            <!--                    <dc-schema>project</dc-schema>-->
+            <!--                    <dc-element>identifier</dc-element>-->
+            <!--                    <dc-qualifier>status</dc-qualifier>-->
+            <!--                    <label>Status</label>-->
+            <!--                    <input-type value-pairs-name="project_status">dropdown</input-type>-->
+            <!--                    <hint>Enter the status of the project</hint>-->
+            <!--                </field>-->
+            <!--            </row>-->
+            <!--            <row>-->
+            <!--                <field>-->
+            <!--                    <dc-schema>project</dc-schema>-->
+            <!--                    <dc-element>identifier</dc-element>-->
+            <!--                    <dc-qualifier>startdate</dc-qualifier>-->
+            <!--                    <label>Start date</label>-->
+            <!--                    <input-type>date</input-type>-->
+            <!--                    <hint>Enter the start date of the project</hint>-->
+            <!--                </field>-->
+            <!--            </row>-->
+            <!--            <row>-->
+            <!--                <field>-->
+            <!--                    <dc-schema>project</dc-schema>-->
+            <!--                    <dc-element>identifier</dc-element>-->
+            <!--                    <dc-qualifier>expectedcompletion</dc-qualifier>-->
+            <!--                    <label>Expected Completion</label>-->
+            <!--                    <input-type>date</input-type>-->
+            <!--                    <hint>Enter the expected completion date of the project</hint>-->
+            <!--                </field>-->
+            <!--            </row>-->
             <row>
                 <relation-field>
                     <relationship-type>isPersonOfProject</relationship-type>
@@ -1450,6 +1464,19 @@
     <!-- stores the associated stored-values in the database.                  -->
 
     <form-value-pairs>
+        <value-pairs value-pairs-name="common_publisher" dc-term="publisher">
+            <pair>
+                <displayed-value>Universidade do Estado do Amazonas</displayed-value>
+                <stored-value>Universidade do Estado do Amazonas</stored-value>
+            </pair>
+        </value-pairs>
+        <value-pairs value-pairs-name="common_publisher-initials" dc-term="publisher-initials">
+            <pair>
+                <displayed-value>UEA</displayed-value>
+                <stored-value>UEA</stored-value>
+            </pair>
+        </value-pairs>
+
         <value-pairs value-pairs-name="common_identifiers" dc-term="identifier">
             <pair>
                 <displayed-value>ISSN</displayed-value>

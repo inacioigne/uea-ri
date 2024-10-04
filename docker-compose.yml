@@ -11,7 +11,6 @@ services:
     build:
       context: .
       dockerfile: ui.dockerfile
-      # dockerfile: ui-dist.dockerfile
       network: "host"
     env_file:
       - .env_prod
@@ -23,7 +22,7 @@ services:
       target: 4000
     stdin_open: true
     tty: true
-    # restart: unless-stopped
+    restart: unless-stopped
 
   # Dspace API
   api:

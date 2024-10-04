@@ -31,6 +31,7 @@ services:
     build:
       context: .
       dockerfile: api.dockerfile
+      network: "host"
     env_file:
       - .env_prod
     depends_on:

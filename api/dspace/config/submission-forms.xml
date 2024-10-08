@@ -74,7 +74,7 @@
                     <required></required>
                 </field>
             </row>
-            
+
             <row>
                 <field>
                     <dc-schema>dc</dc-schema>
@@ -236,12 +236,8 @@
                     <hint>Se o item tiver algum número de identificação ou código associado a ele, insira os tipos e os números ou códigos.
                     </hint>
                     <required></required>
+                     <style>col-sm-6</style>
                 </field>
-            </row>
-
-            
-
-            <row>
                 <field>
                     <dc-schema>dc</dc-schema>
                     <dc-element>language</dc-element>
@@ -254,6 +250,7 @@
                     um conjunto de dados ou uma imagem), selecione 'N/A'.
                     </hint>
                     <required></required>
+                    <style>col-sm-6</style>
                 </field>
             </row>
         </form>

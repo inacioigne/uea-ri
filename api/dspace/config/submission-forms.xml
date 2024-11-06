@@ -131,6 +131,19 @@
                     <required>true</required>
                 </field>
             </row>
+            <row>
+                <field>
+                    <dc-schema>dc</dc-schema>
+                    <dc-element>contributor</dc-element>
+                    <dc-qualifier>advisor-lattes</dc-qualifier>
+                    <repeatable>false</repeatable>
+                    <label>Lattes do Orientador</label>
+                    <input-type>onebox</input-type>
+                    <hint>CAMPO OPCIONAL: Informe a URL do currículo lattes do Orientador.</hint>
+                    <required></required>
+                </field>
+            </row>
+            
 
             <row>
                 <field>
@@ -146,7 +159,9 @@
                 </field>
             </row>
 
-            <row>
+           
+
+            <!-- <row>
                 <field>
                     <dc-schema>dc</dc-schema>
                     <dc-element>contributor</dc-element>
@@ -158,7 +173,179 @@
                     <type-bind>Dissertação,Tese, Trabalho de Conclusão de Curso, Trabalho de Conclusão de Curso de Especialização</type-bind>
                     <required></required>
                 </field>
-            </row>   
+            </row>    -->
+
+
+	   
+	   <!-- PRIMEIRO MEMBRO DA BANCA -->
+       <row>
+	   
+	   <field>
+		 <dc-schema>dc</dc-schema>
+         <dc-element>contributor</dc-element>
+         <dc-qualifier>referee1</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Primeiro membro da banca:</label>
+		 <type-bind>Tese, Dissertação, Trabalho de Conclusão de Curso</type-bind>
+         <input-type>name</input-type>
+         <hint>&lt;div class="alert alert-info"&gt;Descrição do &lt;strong&gt;PRIMEIRO MEMBRO DA BANCA&lt;/strong&gt;
+               &lt;/div&gt;
+		       &lt;font color="#449d44"&gt;CAMPO OPCIONAL: &lt;/font&gt; Informe o nome do primeiro membro da banca, conforme o formato de citação.</hint>
+         <required></required>
+         <style>col-sm-6</style>
+       </field>
+
+	    <field>
+		 <dc-schema>dc</dc-schema>
+         <dc-element>contributor</dc-element>
+         <dc-qualifier>referee1Lattes</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>&lt;a href="http://buscatextual.cnpq.br/buscatextual/busca.do?metodo=apresentar" target="_blank" &gt;URL do Currículo Lattes&lt;/a&gt; do primeiro membro da banca:</label>
+		 <type-bind>Tese, Dissertação, Trabalho de Conclusão de Curso</type-bind>
+         <input-type>onebox</input-type>
+         <hint>&lt;font color="#449d44"&gt;CAMPO OPCIONAL: &lt;/font&gt; Informe a URL do currículo lattes do primeiro membro da banca.</hint>
+         <required></required>
+         <style>col-sm-6</style>
+       </field>
+	   
+
+       </row>
+	   
+
+	   <!-- SEGUNDO MEMBRO DA BANCA -->
+       <row>
+	   
+	   <field>
+		 <dc-schema>dc</dc-schema>
+         <dc-element>contributor</dc-element>
+         <dc-qualifier>referee2</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Segundo membro da banca:</label>
+		 <type-bind>Tese, Dissertação, Trabalho de Conclusão de Curso</type-bind>
+         <input-type>name</input-type>
+         <hint>&lt;div class="alert alert-info"&gt;Se houver, descrição do &lt;strong&gt;SEGUNDO MEMBRO DA BANCA&lt;/strong&gt;
+		       &lt;/div&gt;
+		       &lt;font color="#449d44"&gt;CAMPO OPCIONAL: &lt;/font&gt; Informe o nome do segundo membro da banca, conforme o formato de citação.
+			   </hint>
+         <required></required>
+         <style>col-sm-6</style>
+       </field>
+
+	    <field>
+		 <dc-schema>dc</dc-schema>
+         <dc-element>contributor</dc-element>
+         <dc-qualifier>referee2Lattes</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>&lt;a href="http://buscatextual.cnpq.br/buscatextual/busca.do?metodo=apresentar" target="_blank" &gt;URL do Currículo Lattes&lt;/a&gt; do segundo membro da banca:</label>
+		 <type-bind>Tese, Dissertação, Trabalho de Conclusão de Curso</type-bind>
+         <input-type>onebox</input-type>
+         <hint> &lt;font color="#449d44"&gt;CAMPO OPCIONAL: &lt;/font&gt; Informe a URL do currículo lattes do segundo membro da banca.</hint>
+         <required></required>
+         <style>col-sm-6</style>
+       </field>
+	   
+
+       </row>
+	   
+	   <!-- TERCEIRO MEMBRO DA BANCA -->
+       <row>
+	   
+	   <field>
+		 <dc-schema>dc</dc-schema>
+         <dc-element>contributor</dc-element>
+         <dc-qualifier>referee3</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Terceiro membro da banca:</label>
+		 <type-bind>Tese, Dissertação, Trabalho de Conclusão de Curso</type-bind>
+         <input-type>name</input-type>
+         <hint>&lt;div class="alert alert-info"&gt;Se houver, descrição do &lt;strong&gt;TERCEIRO MEMBRO DA BANCA&lt;/strong&gt;
+		       &lt;/div&gt;
+		       &lt;font color="#449d44"&gt;CAMPO OPCIONAL: &lt;/font&gt; Informe o nome do segundo membro da banca, conforme o formato de citação.</hint>
+         <required></required>
+         <style>col-sm-6</style>
+       </field>
+
+	    <field>
+		 <dc-schema>dc</dc-schema>
+         <dc-element>contributor</dc-element>
+         <dc-qualifier>referee3Lattes</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>&lt;a href="http://buscatextual.cnpq.br/buscatextual/busca.do?metodo=apresentar" target="_blank" &gt;URL do Currículo Lattes&lt;/a&gt; do terceiro membro da banca:</label>
+		 <type-bind>Tese, Dissertação, Trabalho de Conclusão de Curso</type-bind>
+         <input-type>onebox</input-type>
+         <hint>&lt;font color="#449d44"&gt;CAMPO OPCIONAL: &lt;/font&gt; Informe a URL do currículo lattes do terceiro membro da banca.</hint>
+         <required></required>
+         <style>col-sm-6</style>
+       </field>
+	   
+	    
+        </row>
+	   
+	   <!-- QUARTO MEMBRO DA BANCA -->
+       <row>
+	   
+	   <field>
+		 <dc-schema>dc</dc-schema>
+         <dc-element>contributor</dc-element>
+         <dc-qualifier>referee4</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Quarto membro da banca:</label>
+		 <type-bind>Tese, Dissertação, Trabalho de Conclusão de Curso</type-bind>
+         <input-type>name</input-type>
+         <hint>&lt;div class="alert alert-info"&gt;Se houver, descrição do &lt;strong&gt;QUARTO MEMBRO DA BANCA&lt;/strong&gt;
+		       &lt;/div&gt;
+		       &lt;font color="#449d44"&gt;CAMPO OPCIONAL: &lt;/font&gt; Informe o nome do quarto membro da banca, conforme o formato de citação.</hint>
+         <required></required>
+         <style>col-sm-6</style>
+       </field>
+
+	    <field>
+		 <dc-schema>dc</dc-schema>
+         <dc-element>contributor</dc-element>
+         <dc-qualifier>referee4Lattes</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>&lt;a href="http://buscatextual.cnpq.br/buscatextual/busca.do?metodo=apresentar" target="_blank" &gt;URL do Currículo Lattes&lt;/a&gt; do quarto membro da banca:</label>
+		 <type-bind>Tese, Dissertação, Trabalho de Conclusão de Curso</type-bind>
+         <input-type>onebox</input-type>
+         <hint>&lt;font color="#449d44"&gt;CAMPO OPCIONAL: &lt;/font&gt; Informe a URL do currículo lattes do quarto membro da banca.</hint>
+         <required></required>
+         <style>col-sm-6</style>
+       </field>	   
+	   
+	
+        </row>
+	   
+	   <!-- QUINTO MEMBRO DA BANCA -->
+        <row>
+	   
+	   <field>
+		 <dc-schema>dc</dc-schema>
+         <dc-element>contributor</dc-element>
+         <dc-qualifier>referee5</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Quinto membro da banca:</label>
+		 <type-bind>Tese, Dissertação, Trabalho de Conclusão de Curso</type-bind>
+         <input-type>name</input-type>
+         <hint>&lt;div class="alert alert-info"&gt;Se houver, descrição do &lt;strong&gt;QUINTO MEMBRO DA BANCA&lt;/strong&gt;
+		       &lt;/div&gt;
+		       &lt;font color="#449d44"&gt;CAMPO OPCIONAL: &lt;/font&gt; Informe o nome do quinto membro da banca, conforme o formato de citação.</hint>
+         <required></required>
+         <style>col-sm-6</style>
+       </field>
+
+	    <field>
+		 <dc-schema>dc</dc-schema>
+         <dc-element>contributor</dc-element>
+         <dc-qualifier>referee5Lattes</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>&lt;a href="http://buscatextual.cnpq.br/buscatextual/busca.do?metodo=apresentar" target="_blank" &gt;URL do Currículo Lattes&lt;/a&gt; do quinto  membro da banca:</label>
+		 <type-bind>Tese, Dissertação, Trabalho de Conclusão de Curso</type-bind>
+         <input-type>onebox</input-type>
+         <hint>&lt;font color="#449d44"&gt;CAMPO OPCIONAL: &lt;/font&gt; Informe a URL do currículo lattes do quinto  membro da banca.</hint>
+         <required></required>
+         <style>col-sm-6</style>
+       </field>
+       </row>
 
             <row>
                 <field>

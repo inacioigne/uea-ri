@@ -114,6 +114,7 @@
                     <label>Lattes do Autor</label>
                     <input-type>onebox</input-type>
                     <hint>CAMPO OPCIONAL: Informe a URL do currículo lattes do autor.</hint>
+                    <type-bind>Dissertação,Tese, Trabalho de Conclusão de Curso, Trabalho de Conclusão de Curso de Especialização</type-bind>
                     <required></required>
                 </field>
             </row>
@@ -139,6 +140,7 @@
                     <repeatable>false</repeatable>
                     <label>Lattes do Orientador</label>
                     <input-type>onebox</input-type>
+                    <type-bind>Dissertação,Tese, Trabalho de Conclusão de Curso, Trabalho de Conclusão de Curso de Especialização</type-bind>
                     <hint>CAMPO OPCIONAL: Informe a URL do currículo lattes do Orientador.</hint>
                     <required></required>
                 </field>
@@ -150,7 +152,7 @@
                     <dc-schema>dc</dc-schema>
                     <dc-element>contributor</dc-element>
                     <dc-qualifier>co-advisor</dc-qualifier>
-                    <repeatable>true</repeatable>
+                    <repeatable>false</repeatable>
                     <label>Coorientador</label>
                     <input-type>onebox</input-type>
                     <hint>CAMPO OPCIONAL: Informe o nome do coorientador, conforme o formato de citação.</hint>
@@ -167,6 +169,7 @@
                     <repeatable>false</repeatable>
                     <label>Lattes do Coorientador</label>
                     <input-type>onebox</input-type>
+                    <type-bind>Dissertação,Tese, Trabalho de Conclusão de Curso, Trabalho de Conclusão de Curso de Especialização</type-bind>
                     <hint>CAMPO OPCIONAL: Informe a URL do currículo lattes do Coorientador.</hint>
                     <required></required>
                 </field>

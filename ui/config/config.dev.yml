@@ -7,3 +7,5 @@ rest:
 # Theme Config
 themes:
   - name: 'uea'
+
+defaultLanguage: pt-BR

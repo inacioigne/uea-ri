@@ -42,7 +42,6 @@
     ],
     "useDefineForClassFields": false,
     "useUnknownInCatchVariables": true,
-    "esModuleInterop": true
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,

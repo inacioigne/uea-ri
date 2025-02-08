@@ -36,12 +36,10 @@ export class ItemPageAbstractFieldComponent extends ItemPageFieldComponent {
     /**
      * Fields (schema.element.qualifier) used to render their values.
      * In this component, we want to display values for metadata 'dc.description.abstract'
-     * UEA - Alteração para mostrar o resumo em português
      */
     fields: string[] = [
-   'dc.description.resumo',
+      'dc.description.abstract',
     ];
-   
 
     /**
      * Label i18n key for the rendered metadata

@@ -10,8 +10,7 @@
   ],
   "include": [
     "src/**/*.d.ts",
-    "src/themes/**/*.module.ts",
-    "src/themes/**/*.*.ts"
+    "src/themes/**/*.module.ts"
   ],
   "exclude": [
     "src/test.ts",

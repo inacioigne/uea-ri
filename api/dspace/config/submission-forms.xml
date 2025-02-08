@@ -4,6 +4,22 @@
 
 <input-forms>
 
+    <!-- The form-definitions map lays out the detailed definition of all the -->
+    <!-- submission forms. Each separate form set has a unique name as an     -->
+    <!-- attribute. This name matches one of the names in the form-map. One   -->
+    <!-- named form set has the name "traditional"; as this name suggests,    -->
+    <!-- it is the old style and is also the default, which gets used when    -->
+    <!-- the specified collection has no correspondingly-named form set.      -->
+    <!--                                                                      -->
+    <!-- Each form set contains an ordered set of pages; each page defines    -->
+    <!-- one submission metadata entry screen. Each page has an ordered list  -->
+    <!-- of field definitions, Each field definition corresponds to one       -->
+    <!-- metadata entry (a so-called row), which has a DC element name, a     -->
+    <!-- displayed label, a text string prompt which is called a hint, and    -->
+    <!-- an input-type. Each field also may hold optional elements: DC        -->
+    <!-- qualifier name, a repeatable flag, and a text string whose presence  -->
+    <!-- serves as a 'this field is required' flag.                           -->
+
     <form-definitions>
         <!-- Form used for entering in Bitstream/File metadata after uploading a file -->
         <form name="bitstream-metadata">
@@ -38,370 +54,75 @@
             <row>
                 <field>
                     <dc-schema>dc</dc-schema>
-                    <dc-element>type</dc-element>
-                    <dc-qualifier></dc-qualifier>
-                    <repeatable>false</repeatable>
-                    <label>Tipo</label>
-                    <input-type value-pairs-name="common_types">dropdown</input-type>
-                    <hint>Selecione o tipo de conteúdo do item.
-                    </hint>
-                    <required>CAMPO OBRIGATÓRIO: Você deve escolher pelo menos um tipo.</required>
+                    <dc-element>contributor</dc-element>
+                    <dc-qualifier>author</dc-qualifier>
+                    <repeatable>true</repeatable>
+                    <label>Author</label>
+                    <input-type>onebox</input-type>
+                    <hint>Enter the author's name (Family name, Given names).</hint>
+                    <required></required>
                 </field>
             </row>
-
             <row>
                 <field>
                     <dc-schema>dc</dc-schema>
                     <dc-element>title</dc-element>
                     <dc-qualifier></dc-qualifier>
                     <repeatable>false</repeatable>
-                    <label>Título</label>
+                    <label>Title</label>
                     <input-type>onebox</input-type>
-                    <hint>Entre com o título do item</hint>
-                    <required>CAMPO OBRIGATÓRIO: Informe o título do documento.</required>
+                    <hint>Enter the main title of the item.</hint>
+                    <required>You must enter a main title for this item.</required>
                 </field>
             </row>
-
             <row>
                 <field>
                     <dc-schema>dc</dc-schema>
                     <dc-element>title</dc-element>
                     <dc-qualifier>alternative</dc-qualifier>
                     <repeatable>true</repeatable>
-                    <label>Título alternativo</label>
+                    <label>Other Titles</label>
                     <input-type>onebox</input-type>
-                    <hint>CAMPO OPCIONAL: Informe o título alternativo. Recomenda-se preencher com a tradução do título da tese ou dissertação para o inglês, para maior visibilidade do documento.</hint>
+                    <hint>If the item has any alternative titles, please enter them here.</hint>
                     <required></required>
                 </field>
             </row>
-
             <row>
                 <field>
                     <dc-schema>dc</dc-schema>
                     <dc-element>date</dc-element>
                     <dc-qualifier>issued</dc-qualifier>
                     <repeatable>false</repeatable>
-                    <label>Data de publicação</label>
+                    <label>Date of Issue</label>
                     <style>col-sm-4</style>
                     <input-type>date</input-type>
-                    <hint>Por favor, informe a data da publicação ou distribuição pública.
-                    Você pode deixar de fora o dia e/ou mês se não forem aplicáveis.
+                    <hint>Please give the date of previous publication or public distribution.
+                        You can leave out the day and/or month if they aren't applicable.
                     </hint>
-                    <required>Entre pelo menos com o ano de publicação do item.</required>
+                    <required>You must enter at least the year.</required>
                 </field>
 
-                
-            </row>
-            <row>
-                <field>
-                    <dc-schema>dc</dc-schema>
-                    <dc-element>contributor</dc-element>
-                    <dc-qualifier>author</dc-qualifier>
-                    <repeatable>true</repeatable>
-                    <label>Autor</label>
-                    <input-type>onebox</input-type>
-                    <hint>Entre com o nome do autor.</hint>
-                    <required>CAMPO OBRIGATÓRIO: Informe o nome do autor, conforme o formato de citação.</required>
-                </field>
-            </row>
-
-            <row>
-                <field>
-                    <dc-schema>dc</dc-schema>
-                    <dc-element>contributor</dc-element>
-                    <dc-qualifier>author-lattes</dc-qualifier>
-                    <repeatable>false</repeatable>
-                    <label>Lattes do Autor</label>
-                    <input-type>onebox</input-type>
-                    <hint>CAMPO OPCIONAL: Informe a URL do currículo lattes do autor.</hint>
-                    <type-bind>Dissertação,Tese, Trabalho de Conclusão de Curso, Trabalho de Conclusão de Curso de Especialização</type-bind>
-                    <required></required>
-                </field>
-            </row>
-
-            <row>
-                <field>
-                    <dc-schema>dc</dc-schema>
-                    <dc-element>contributor</dc-element>
-                    <dc-qualifier>advisor</dc-qualifier>
-                    <repeatable></repeatable>
-                    <label>Orientador</label>
-                    <input-type>onebox</input-type>
-                    <hint>Informe o nome do orientador, conforme o formato de citação.</hint>
-                    <type-bind>Dissertação,Tese, Trabalho de Conclusão de Curso, Trabalho de Conclusão de Curso de Especialização</type-bind>
-                    <required>true</required>
-                </field>
-            </row>
-            <row>
-                <field>
-                    <dc-schema>dc</dc-schema>
-                    <dc-element>contributor</dc-element>
-                    <dc-qualifier>advisor-lattes</dc-qualifier>
-                    <repeatable>false</repeatable>
-                    <label>Lattes do Orientador</label>
-                    <input-type>onebox</input-type>
-                    <type-bind>Dissertação,Tese, Trabalho de Conclusão de Curso, Trabalho de Conclusão de Curso de Especialização</type-bind>
-                    <hint>CAMPO OPCIONAL: Informe a URL do currículo lattes do Orientador.</hint>
-                    <required></required>
-                </field>
-            </row>
-            
-
-            <row>
-                <field>
-                    <dc-schema>dc</dc-schema>
-                    <dc-element>contributor</dc-element>
-                    <dc-qualifier>co-advisor</dc-qualifier>
-                    <repeatable>false</repeatable>
-                    <label>Coorientador</label>
-                    <input-type>onebox</input-type>
-                    <hint>CAMPO OPCIONAL: Informe o nome do coorientador, conforme o formato de citação.</hint>
-                    <type-bind>Dissertação,Tese, Trabalho de Conclusão de Curso, Trabalho de Conclusão de Curso de Especialização</type-bind>
-                    <required></required>
-                </field>
-            </row>
-
-            <row>
-                <field>
-                    <dc-schema>dc</dc-schema>
-                    <dc-element>contributor</dc-element>
-                    <dc-qualifier>co-advisor-lattes</dc-qualifier>
-                    <repeatable>false</repeatable>
-                    <label>Lattes do Coorientador</label>
-                    <input-type>onebox</input-type>
-                    <type-bind>Dissertação,Tese, Trabalho de Conclusão de Curso, Trabalho de Conclusão de Curso de Especialização</type-bind>
-                    <hint>CAMPO OPCIONAL: Informe a URL do currículo lattes do Coorientador.</hint>
-                    <required></required>
-                </field>
-            </row>
-
-           
-
-            <!-- <row>
-                <field>
-                    <dc-schema>dc</dc-schema>
-                    <dc-element>contributor</dc-element>
-                    <dc-qualifier>referee</dc-qualifier>
-                    <repeatable>true</repeatable>
-                    <label>Membro de Banca</label>
-                    <input-type>onebox</input-type>
-                    <hint>CAMPO OPCIONAL: Informe o nome dos membros da banca, conforme o formato de citação.</hint>
-                    <type-bind>Dissertação,Tese, Trabalho de Conclusão de Curso, Trabalho de Conclusão de Curso de Especialização</type-bind>
-                    <required></required>
-                </field>
-            </row>    -->
-	   <!-- PRIMEIRO MEMBRO DA BANCA -->
-       <row>
-	   
-	   <field>
-		 <dc-schema>dc</dc-schema>
-         <dc-element>contributor</dc-element>
-         <dc-qualifier>referee1</dc-qualifier>
-         <repeatable>false</repeatable>
-         <label>Primeiro membro da banca:</label>
-		 <type-bind>Tese, Dissertação, Trabalho de Conclusão de Curso</type-bind>
-         <input-type>onebox</input-type>
-         <hint>Descrição do PRIMEIRO MEMBRO DA BANCA</hint>
-         <required></required>
-         <style>col-sm-6</style>
-       </field>
-
-	    <field>
-		 <dc-schema>dc</dc-schema>
-         <dc-element>contributor</dc-element>
-         <dc-qualifier>referee1Lattes</dc-qualifier>
-         <repeatable>false</repeatable>
-         <label>URL do Currículo Lattes do primeiro membro da banca:</label>
-		 <type-bind>Tese, Dissertação, Trabalho de Conclusão de Curso</type-bind>
-         <input-type>onebox</input-type>
-         <hint>&lt;font color="#449d44"&gt;CAMPO OPCIONAL: &lt;/font&gt; Informe a URL do currículo lattes do primeiro membro da banca.</hint>
-         <required></required>
-         <style>col-sm-6</style>
-       </field>
-	   
-
-       </row>
-	   
-
-	   <!-- SEGUNDO MEMBRO DA BANCA -->
-       <row>
-	   
-	   <field>
-		 <dc-schema>dc</dc-schema>
-         <dc-element>contributor</dc-element>
-         <dc-qualifier>referee2</dc-qualifier>
-         <repeatable>false</repeatable>
-         <label>Segundo membro da banca:</label>
-		 <type-bind>Tese, Dissertação, Trabalho de Conclusão de Curso</type-bind>
-         <input-type>onebox</input-type>
-         <hint>&lt;font color="#449d44"&gt;CAMPO OPCIONAL: &lt;/font&gt; Informe o nome do segundo membro da banca, conforme o formato de citação.
-			   </hint>
-         <required></required>
-         <style>col-sm-6</style>
-       </field>
-
-	    <field>
-		 <dc-schema>dc</dc-schema>
-         <dc-element>contributor</dc-element>
-         <dc-qualifier>referee2Lattes</dc-qualifier>
-         <repeatable>false</repeatable>
-         <label>URL do Currículo Lattes do segundo membro da banca:</label>
-		 <type-bind>Tese, Dissertação, Trabalho de Conclusão de Curso</type-bind>
-         <input-type>onebox</input-type>
-         <hint> &lt;font color="#449d44"&gt;CAMPO OPCIONAL: &lt;/font&gt; Informe a URL do currículo lattes do segundo membro da banca.</hint>
-         <required></required>
-         <style>col-sm-6</style>
-       </field>
-	   
-
-       </row>
-	   
-	   <!-- TERCEIRO MEMBRO DA BANCA -->
-       <row>
-	   
-	   <field>
-		 <dc-schema>dc</dc-schema>
-         <dc-element>contributor</dc-element>
-         <dc-qualifier>referee3</dc-qualifier>
-         <repeatable>false</repeatable>
-         <label>Terceiro membro da banca:</label>
-		 <type-bind>Tese, Dissertação, Trabalho de Conclusão de Curso</type-bind>
-         <input-type>onebox</input-type>
-         <hint>
-		       &lt;font color="#449d44"&gt;CAMPO OPCIONAL: &lt;/font&gt; Informe o nome do segundo membro da banca, conforme o formato de citação.</hint>
-         <required></required>
-         <style>col-sm-6</style>
-       </field>
-
-	    <field>
-		 <dc-schema>dc</dc-schema>
-         <dc-element>contributor</dc-element>
-         <dc-qualifier>referee3Lattes</dc-qualifier>
-         <repeatable>false</repeatable>
-         <label>URL do Currículo Lattes do terceiro membro da banca:</label>
-		 <type-bind>Tese, Dissertação, Trabalho de Conclusão de Curso</type-bind>
-         <input-type>onebox</input-type>
-         <hint>&lt;font color="#449d44"&gt;CAMPO OPCIONAL: &lt;/font&gt; Informe a URL do currículo lattes do terceiro membro da banca.</hint>
-         <required></required>
-         <style>col-sm-6</style>
-       </field>
-	   
-	    
-        </row>
-	   
-	   <!-- QUARTO MEMBRO DA BANCA -->
-       <row>
-	   
-	   <field>
-		 <dc-schema>dc</dc-schema>
-         <dc-element>contributor</dc-element>
-         <dc-qualifier>referee4</dc-qualifier>
-         <repeatable>false</repeatable>
-         <label>Quarto membro da banca:</label>
-		 <type-bind>Tese, Dissertação, Trabalho de Conclusão de Curso</type-bind>
-         <input-type>onebox</input-type>
-         <hint>
-		       &lt;font color="#449d44"&gt;CAMPO OPCIONAL: &lt;/font&gt; Informe o nome do quarto membro da banca, conforme o formato de citação.</hint>
-         <required></required>
-         <style>col-sm-6</style>
-       </field>
-
-	    <field>
-		 <dc-schema>dc</dc-schema>
-         <dc-element>contributor</dc-element>
-         <dc-qualifier>referee4Lattes</dc-qualifier>
-         <repeatable>false</repeatable>
-         <label>URL do Currículo Lattes do quarto membro da banca:</label>
-		 <type-bind>Tese, Dissertação, Trabalho de Conclusão de Curso</type-bind>
-         <input-type>onebox</input-type>
-         <hint>&lt;font color="#449d44"&gt;CAMPO OPCIONAL: &lt;/font&gt; Informe a URL do currículo lattes do quarto membro da banca.</hint>
-         <required></required>
-         <style>col-sm-6</style>
-       </field>	   
-	   
-	
-        </row>
-	   
-	   <!-- QUINTO MEMBRO DA BANCA -->
-        <row>
-	   
-	   <field>
-		 <dc-schema>dc</dc-schema>
-         <dc-element>contributor</dc-element>
-         <dc-qualifier>referee5</dc-qualifier>
-         <repeatable>false</repeatable>
-         <label>Quinto membro da banca:</label>
-		 <type-bind>Tese, Dissertação, Trabalho de Conclusão de Curso</type-bind>
-         <input-type>onebox</input-type>
-         <hint>
-		       &lt;font color="#449d44"&gt;CAMPO OPCIONAL: &lt;/font&gt; Informe o nome do quinto membro da banca, conforme o formato de citação.</hint>
-         <required></required>
-         <style>col-sm-6</style>
-       </field>
-
-	    <field>
-		 <dc-schema>dc</dc-schema>
-         <dc-element>contributor</dc-element>
-         <dc-qualifier>referee5Lattes</dc-qualifier>
-         <repeatable>false</repeatable>
-         <label>URL do Currículo Lattes do quinto membro da banca:</label>
-		 <type-bind>Tese, Dissertação, Trabalho de Conclusão de Curso</type-bind>
-         <input-type>onebox</input-type>
-         <hint>&lt;font color="#449d44"&gt;CAMPO OPCIONAL: &lt;/font&gt; Informe a URL do currículo lattes do quinto  membro da banca.</hint>
-         <required></required>
-         <style>col-sm-6</style>
-       </field>
-       </row>
-
-            <row>
                 <field>
                     <dc-schema>dc</dc-schema>
                     <dc-element>publisher</dc-element>
-                    <input-type value-pairs-name="common_publisher">dropdown</input-type>
                     <dc-qualifier></dc-qualifier>
                     <repeatable>false</repeatable>
-                    <label>Editor</label>
-                    <style>col-sm-10</style>
-                    <hint>Insira o nome do editor deste item</hint>
-                    <required>CAMPO OBRIGATÓRIO: Nome da instituição por extenso.</required>
-                </field>
-                <field>
-                    <dc-schema>dc</dc-schema>
-                    <dc-element>publisher</dc-element>
-                    <dc-qualifier>initials</dc-qualifier>
-                    <input-type value-pairs-name="common_publisher-initials">dropdown</input-type>
-                    <repeatable>false</repeatable>
-                    <label>Sigla da instituição</label>
-                    <style>col-sm-2</style>
-                    <hint>Insira o nome do editor deste item</hint>
-                    <required>CAMPO OBRIGATÓRIO: Sigla da instituição.</required>
-                </field>
-            </row>         
-
-            <row>
-                <field>
-                    <dc-schema>dc</dc-schema>
-                    <dc-element>publisher</dc-element>
-                    <dc-qualifier>program</dc-qualifier>
-                    <repeatable>false</repeatable>
-                    <label>Programa de Pós-Graduação</label>
-                    <!-- <style>col-sm-8</style> -->
+                    <label>Publisher</label>
+                    <style>col-sm-8</style>
                     <input-type>onebox</input-type>
-                    <hint>Insira o nome do Programa de Pós-Graduação</hint>
+                    <hint>Enter the name of the publisher of the previously issued instance of this item.</hint>
                     <required></required>
-                    <type-bind>Dissertação,Tese</type-bind>
                 </field>
             </row>
-
             <row>
                 <field>
                     <dc-schema>dc</dc-schema>
                     <dc-element>identifier</dc-element>
                     <dc-qualifier>citation</dc-qualifier>
                     <repeatable>false</repeatable>
-                    <label>Citação</label>
+                    <label>Citation</label>
                     <input-type>onebox</input-type>
-                    <hint>Insira a citação padrão para este item.</hint>
+                    <hint>Enter the standard citation for the previously issued instance of this item.</hint>
                     <required></required>
                 </field>
             </row>
@@ -411,9 +132,9 @@
                     <dc-element>relation</dc-element>
                     <dc-qualifier>ispartofseries</dc-qualifier>
                     <repeatable>true</repeatable>
-                    <label>Série.</label>
+                    <label>Series/Report No.</label>
                     <input-type>series</input-type>
-                    <hint>Insira a série e o número atribuído a este item.</hint>
+                    <hint>Enter the series and number assigned to this item by your community.</hint>
                     <required></required>
                 </field>
             </row>
@@ -424,26 +145,40 @@
                     <dc-qualifier></dc-qualifier>
                     <!-- An input-type of qualdrop_value MUST be marked as repeatable -->
                     <repeatable>true</repeatable>
-                    <label>Identificador</label>
+                    <label>Identifiers</label>
                     <input-type value-pairs-name="common_identifiers">qualdrop_value</input-type>
-                    <hint>Se o item tiver algum número de identificação ou código associado a ele, insira os tipos e os números ou códigos.
+                    <hint>If the item has any identification numbers or codes associated with
+                        it, please enter the types and the actual numbers or codes.
                     </hint>
                     <required></required>
-                     <style>col-sm-6</style>
                 </field>
+            </row>
+            <row>
+                <field>
+                    <dc-schema>dc</dc-schema>
+                    <dc-element>type</dc-element>
+                    <dc-qualifier></dc-qualifier>
+                    <repeatable>true</repeatable>
+                    <label>Type</label>
+                    <input-type value-pairs-name="common_types">dropdown</input-type>
+                    <hint>Select the type of content of the item.
+                    </hint>
+                    <required>You must choose at least one type.</required>
+                </field>
+            </row>
+            <row>
                 <field>
                     <dc-schema>dc</dc-schema>
                     <dc-element>language</dc-element>
                     <dc-qualifier>iso</dc-qualifier>
                     <repeatable>false</repeatable>
-                    <label>Idioma</label>
+                    <label>Language</label>
                     <input-type value-pairs-name="common_iso_languages">dropdown</input-type>
-                    <hint>Selecione o idioma do conteúdo principal do item. Se o idioma não aparecer na
-                    lista, selecione 'Outro'. Se o conteúdo não tiver realmente um idioma (por exemplo, se for
-                    um conjunto de dados ou uma imagem), selecione 'N/A'.
+                    <hint>Select the language of the main content of the item. If the language does not appear in the
+                        list, please select 'Other'. If the content does not really have a language (for example, if it
+                        is a dataset or an image) please select 'N/A'.
                     </hint>
                     <required></required>
-                    <style>col-sm-6</style>
                 </field>
             </row>
         </form>
@@ -456,27 +191,15 @@
                     <dc-schema>dc</dc-schema>
                     <dc-element>subject</dc-element>
                     <dc-qualifier></dc-qualifier>
+                    <!-- An input-type of tag MUST be marked as repeatable -->
                     <repeatable>true</repeatable>
-                    <label>Assunto</label>
+                    <label>Subject Keywords</label>
                     <input-type>tag</input-type>
-                    <hint>Insira o assunto do item.</hint>
+                    <hint>Enter appropriate subject keywords or phrases.</hint>
                     <required></required>
                     <vocabulary>srsc</vocabulary>
                 </field>
             </row>
-            <!-- <row>
-                <field>
-                    <dc-schema>dc</dc-schema>
-                    <dc-element>subject</dc-element>
-                    <dc-qualifier>cnpq</dc-qualifier>
-                    <repeatable>true</repeatable>
-                    <label>Área do CNPQ</label>
-                    <input-type>tag</input-type>
-                    <hint>Insira o assunto do item.</hint>
-                    <required></required>
-                    <vocabulary>srsc</vocabulary>
-                </field>
-            </row> -->
             <row>
                 <field>
                     <dc-schema>dc</dc-schema>
@@ -485,43 +208,31 @@
                     <repeatable>false</repeatable>
                     <label>Abstract</label>
                     <input-type>textarea</input-type>
-                    <hint>Insira o resumo do item</hint>
+                    <hint>Enter the abstract of the item.</hint>
                     <required></required>
                 </field>
             </row>
             <row>
-                <field>
-                    <dc-schema>dc</dc-schema>
-                    <dc-element>description</dc-element>
-                    <dc-qualifier>resumo</dc-qualifier>
-                    <repeatable>false</repeatable>
-                    <label>Resumo</label>
-                    <input-type>textarea</input-type>
-                    <hint>Insira o resumo do item.</hint>
-                    <required></required>
-                </field>
-            </row> 
-            <row>
-                <field>
-                    <dc-schema>dc</dc-schema>
-                    <dc-element>relation</dc-element>
-                    <dc-qualifier>references</dc-qualifier>
-                    <repeatable>false</repeatable>
-                    <label>Referência</label>
-                    <input-type>textarea</input-type>
-                    <hint>Coloque as referências do item.</hint>
-                    <required></required>
-                </field>
-            </row>
-             <row>
                 <field>
                     <dc-schema>dc</dc-schema>
                     <dc-element>description</dc-element>
                     <dc-qualifier>sponsorship</dc-qualifier>
                     <repeatable>false</repeatable>
-                    <label>Agência de Fomento</label>
-                    <input-type>onebox</input-type>
-                    <hint>Insira a Agência de Fomento</hint>
+                    <label>Sponsors</label>
+                    <input-type>textarea</input-type>
+                    <hint>Enter the names of any sponsors and/or funding codes in the box.</hint>
+                    <required></required>
+                </field>
+            </row>
+            <row>
+                <field>
+                    <dc-schema>dc</dc-schema>
+                    <dc-element>description</dc-element>
+                    <dc-qualifier></dc-qualifier>
+                    <repeatable>false</repeatable>
+                    <label>Description</label>
+                    <input-type>textarea</input-type>
+                    <hint>Enter any other description or comments in this box.</hint>
                     <required></required>
                 </field>
             </row>
@@ -664,7 +375,7 @@
                     <dc-element>language</dc-element>
                     <dc-qualifier>iso</dc-qualifier>
                     <repeatable>false</repeatable>
-                    <label>Idioma</label>
+                    <label>Language</label>
                     <input-type value-pairs-name="common_iso_languages">dropdown</input-type>
                     <hint>Select the language of the main content of the item. If the language does not appear in the
                         list, please select 'Other'. If the content does not really have a language (for example, if it
@@ -732,16 +443,16 @@
                     <hint>Enter the birth date of the person</hint>
                 </field>
             </row>
-            <!--            <row>-->
-            <!--                <field>-->
-            <!--                    <dc-schema>person</dc-schema>-->
-            <!--                    <dc-element>identifier</dc-element>-->
-            <!--                    <dc-qualifier>staffid</dc-qualifier>-->
-            <!--                    <label>Staff ID</label>-->
-            <!--                    <input-type>onebox</input-type>-->
-            <!--                    <hint>Enter the staff id of the person</hint>-->
-            <!--                </field>-->
-            <!--            </row>-->
+<!--            <row>-->
+<!--                <field>-->
+<!--                    <dc-schema>person</dc-schema>-->
+<!--                    <dc-element>identifier</dc-element>-->
+<!--                    <dc-qualifier>staffid</dc-qualifier>-->
+<!--                    <label>Staff ID</label>-->
+<!--                    <input-type>onebox</input-type>-->
+<!--                    <hint>Enter the staff id of the person</hint>-->
+<!--                </field>-->
+<!--            </row>-->
             <row>
                 <field>
                     <dc-schema>person</dc-schema>
@@ -773,36 +484,36 @@
                     <hint>Enter the id of the project</hint>
                 </field>
             </row>
-            <!--            <row>-->
-            <!--                <field>-->
-            <!--                    <dc-schema>project</dc-schema>-->
-            <!--                    <dc-element>identifier</dc-element>-->
-            <!--                    <dc-qualifier>status</dc-qualifier>-->
-            <!--                    <label>Status</label>-->
-            <!--                    <input-type value-pairs-name="project_status">dropdown</input-type>-->
-            <!--                    <hint>Enter the status of the project</hint>-->
-            <!--                </field>-->
-            <!--            </row>-->
-            <!--            <row>-->
-            <!--                <field>-->
-            <!--                    <dc-schema>project</dc-schema>-->
-            <!--                    <dc-element>identifier</dc-element>-->
-            <!--                    <dc-qualifier>startdate</dc-qualifier>-->
-            <!--                    <label>Start date</label>-->
-            <!--                    <input-type>date</input-type>-->
-            <!--                    <hint>Enter the start date of the project</hint>-->
-            <!--                </field>-->
-            <!--            </row>-->
-            <!--            <row>-->
-            <!--                <field>-->
-            <!--                    <dc-schema>project</dc-schema>-->
-            <!--                    <dc-element>identifier</dc-element>-->
-            <!--                    <dc-qualifier>expectedcompletion</dc-qualifier>-->
-            <!--                    <label>Expected Completion</label>-->
-            <!--                    <input-type>date</input-type>-->
-            <!--                    <hint>Enter the expected completion date of the project</hint>-->
-            <!--                </field>-->
-            <!--            </row>-->
+<!--            <row>-->
+<!--                <field>-->
+<!--                    <dc-schema>project</dc-schema>-->
+<!--                    <dc-element>identifier</dc-element>-->
+<!--                    <dc-qualifier>status</dc-qualifier>-->
+<!--                    <label>Status</label>-->
+<!--                    <input-type value-pairs-name="project_status">dropdown</input-type>-->
+<!--                    <hint>Enter the status of the project</hint>-->
+<!--                </field>-->
+<!--            </row>-->
+<!--            <row>-->
+<!--                <field>-->
+<!--                    <dc-schema>project</dc-schema>-->
+<!--                    <dc-element>identifier</dc-element>-->
+<!--                    <dc-qualifier>startdate</dc-qualifier>-->
+<!--                    <label>Start date</label>-->
+<!--                    <input-type>date</input-type>-->
+<!--                    <hint>Enter the start date of the project</hint>-->
+<!--                </field>-->
+<!--            </row>-->
+<!--            <row>-->
+<!--                <field>-->
+<!--                    <dc-schema>project</dc-schema>-->
+<!--                    <dc-element>identifier</dc-element>-->
+<!--                    <dc-qualifier>expectedcompletion</dc-qualifier>-->
+<!--                    <label>Expected Completion</label>-->
+<!--                    <input-type>date</input-type>-->
+<!--                    <hint>Enter the expected completion date of the project</hint>-->
+<!--                </field>-->
+<!--            </row>-->
             <row>
                 <relation-field>
                     <relationship-type>isPersonOfProject</relationship-type>
@@ -1654,19 +1365,6 @@
     <!-- stores the associated stored-values in the database.                  -->
 
     <form-value-pairs>
-        <value-pairs value-pairs-name="common_publisher" dc-term="publisher">
-            <pair>
-                <displayed-value>Universidade do Estado do Amazonas</displayed-value>
-                <stored-value>Universidade do Estado do Amazonas</stored-value>
-            </pair>
-        </value-pairs>
-        <value-pairs value-pairs-name="common_publisher-initials" dc-term="publisher-initials">
-            <pair>
-                <displayed-value>UEA</displayed-value>
-                <stored-value>UEA</stored-value>
-            </pair>
-        </value-pairs>
-
         <value-pairs value-pairs-name="common_identifiers" dc-term="identifier">
             <pair>
                 <displayed-value>ISSN</displayed-value>
@@ -1696,82 +1394,146 @@
 
         <value-pairs value-pairs-name="common_types" dc-term="type">
             <pair>
-                <displayed-value>Trabalho de Conclusão de Curso</displayed-value>
-                <stored-value>Trabalho de Conclusão de Curso</stored-value>
+                <displayed-value>Animation</displayed-value>
+                <stored-value>Animation</stored-value>
             </pair>
             <pair>
-                <displayed-value>Dissertação</displayed-value>
-                <stored-value>Dissertação</stored-value>
+                <displayed-value>Article</displayed-value>
+                <stored-value>Article</stored-value>
             </pair>
             <pair>
-                <displayed-value>Artigo de Periódico</displayed-value>
-                <stored-value>Artigo de Periódico</stored-value>
+                <displayed-value>Book</displayed-value>
+                <stored-value>Book</stored-value>
             </pair>
             <pair>
-                <displayed-value>Livro</displayed-value>
-                <stored-value>Livro</stored-value>
+                <displayed-value>Book chapter</displayed-value>
+                <stored-value>Book chapter</stored-value>
             </pair>
             <pair>
-                <displayed-value>Trabalho de Conclusão de Curso de Especialização</displayed-value>
-                <stored-value>Trabalho de Conclusão de Curso de Especialização</stored-value>
+                <displayed-value>Dataset</displayed-value>
+                <stored-value>Dataset</stored-value>
             </pair>
             <pair>
-                <displayed-value>Tese</displayed-value>
-                <stored-value>Tese</stored-value>
+                <displayed-value>Learning Object</displayed-value>
+                <stored-value>Learning Object</stored-value>
             </pair>
             <pair>
-                <displayed-value>Capítulo de Livro</displayed-value>
-                <stored-value>Capítulo de Livro</stored-value>
+                <displayed-value>Image</displayed-value>
+                <stored-value>Image</stored-value>
             </pair>
             <pair>
-                <displayed-value>Relatório</displayed-value>
-                <stored-value>Relatório</stored-value>
+                <displayed-value>Image, 3-D</displayed-value>
+                <stored-value>Image, 3-D</stored-value>
             </pair>
             <pair>
-                <displayed-value>Trabalho apresentado em Evento</displayed-value>
-                <stored-value>Trabalho apresentado em Evento</stored-value>
+                <displayed-value>Map</displayed-value>
+                <stored-value>Map</stored-value>
             </pair>
             <pair>
-                <displayed-value>Outro</displayed-value>
-                <stored-value>Outro</stored-value>
+                <displayed-value>Musical Score</displayed-value>
+                <stored-value>Musical Score</stored-value>
+            </pair>
+            <pair>
+                <displayed-value>Plan or blueprint</displayed-value>
+                <stored-value>Plan or blueprint</stored-value>
+            </pair>
+            <pair>
+                <displayed-value>Preprint</displayed-value>
+                <stored-value>Preprint</stored-value>
+            </pair>
+            <pair>
+                <displayed-value>Presentation</displayed-value>
+                <stored-value>Presentation</stored-value>
+            </pair>
+            <pair>
+                <displayed-value>Recording, acoustical</displayed-value>
+                <stored-value>Recording, acoustical</stored-value>
+            </pair>
+            <pair>
+                <displayed-value>Recording, musical</displayed-value>
+                <stored-value>Recording, musical</stored-value>
+            </pair>
+            <pair>
+                <displayed-value>Recording, oral</displayed-value>
+                <stored-value>Recording, oral</stored-value>
+            </pair>
+            <pair>
+                <displayed-value>Software</displayed-value>
+                <stored-value>Software</stored-value>
+            </pair>
+            <pair>
+                <displayed-value>Technical Report</displayed-value>
+                <stored-value>Technical Report</stored-value>
+            </pair>
+            <pair>
+                <displayed-value>Thesis</displayed-value>
+                <stored-value>Thesis</stored-value>
+            </pair>
+            <pair>
+                <displayed-value>Video</displayed-value>
+                <stored-value>Video</stored-value>
+            </pair>
+            <pair>
+                <displayed-value>Working Paper</displayed-value>
+                <stored-value>Working Paper</stored-value>
+            </pair>
+            <pair>
+                <displayed-value>Other</displayed-value>
+                <stored-value>Other</stored-value>
             </pair>
         </value-pairs>
+
+        <!-- default language order: (from dspace 1.2.1)
+             "en_US", "en", "es", "de", "fr", "it", "ja", "zh", "other", ""
+          -->
         <value-pairs value-pairs-name="common_iso_languages" dc-term="language_iso">
-            <pair>
-                <displayed-value>Português</displayed-value>
-                <stored-value>pt</stored-value>
-            </pair>
             <pair>
                 <displayed-value>N/A</displayed-value>
                 <stored-value></stored-value>
             </pair>
             <pair>
-                <displayed-value>Inglês</displayed-value>
+                <displayed-value>English (United States)</displayed-value>
+                <stored-value>en_US</stored-value>
+            </pair>
+            <pair>
+                <displayed-value>English</displayed-value>
                 <stored-value>en</stored-value>
             </pair>
             <pair>
-                <displayed-value>Espanhol</displayed-value>
+                <displayed-value>Spanish</displayed-value>
                 <stored-value>es</stored-value>
             </pair>
             <pair>
-                <displayed-value>Alemão</displayed-value>
+                <displayed-value>German</displayed-value>
                 <stored-value>de</stored-value>
             </pair>
             <pair>
-                <displayed-value>Francês</displayed-value>
+                <displayed-value>French</displayed-value>
                 <stored-value>fr</stored-value>
             </pair>
             <pair>
-                <displayed-value>Italiano</displayed-value>
+                <displayed-value>Italian</displayed-value>
                 <stored-value>it</stored-value>
             </pair>
             <pair>
-                <displayed-value>Japonês</displayed-value>
+                <displayed-value>Japanese</displayed-value>
                 <stored-value>ja</stored-value>
             </pair>
             <pair>
-                <displayed-value>Chinês</displayed-value>
+                <displayed-value>Chinese</displayed-value>
                 <stored-value>zh</stored-value>
+            </pair>
+            <pair>
+                <displayed-value>Portuguese</displayed-value>
+                <stored-value>pt</stored-value>
+            </pair>
+            <pair>
+                <displayed-value>Turkish</displayed-value>
+                <stored-value>tr</stored-value>
+            </pair>
+            <pair>
+                <displayed-value>(Other)</displayed-value>
+                <stored-value>other</stored-value>
             </pair>
         </value-pairs>
 

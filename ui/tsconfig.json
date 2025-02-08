@@ -41,7 +41,8 @@
       "jasmine"
     ],
     "useDefineForClassFields": false,
-    "useUnknownInCatchVariables": true
+    "useUnknownInCatchVariables": true,
+    "esModuleInterop": true
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,

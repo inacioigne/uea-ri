@@ -1,4 +1,5 @@
-FROM node:18-alpine as build
+# FROM node:18-alpine as build
+FROM docker.io/node:18-alpine AS build
 
 RUN apk add --update python3 make g++ \
     && rm -rf /var/cache/apk/*

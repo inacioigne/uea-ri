@@ -10,11 +10,11 @@ services:
     image: dspace/dspace-angular:${DSPACE_VERSION}-dist
     build:
       context: .
-      dockerfile: ui-dist.dockerfile
-      # dockerfile: ui.dockerfile
+      # dockerfile: ui-dist.dockerfile
+      dockerfile: ui.dockerfile
       network: "host"
     env_file:
-      - .env_prod
+      - .env
     networks:
        - dockernet
       #  - dspacebuild
@@ -34,7 +34,7 @@ services:
       dockerfile: api.dockerfile
       network: "host"
     env_file:
-      - .env_prod
+      - .env
     depends_on:
       - dspacedb
     networks:

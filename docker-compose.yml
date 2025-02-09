@@ -7,6 +7,8 @@ services:
   # Dspace UI
   ui:
     container_name: dspace-ui
+    environment:
+      - NODE_OPTIONS=--max-old-space-size=8192
     # image: dspace/dspace-angular:${DSPACE_VERSION}-dist
     image: "${DOCKER_REGISTRY:-docker.io}/${DOCKER_OWNER:-dspace}/dspace-angular:${DSPACE_VERSION:-dspace-8_x}-dist"
     build:

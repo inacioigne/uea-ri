@@ -63,6 +63,11 @@
                 "input": "src/themes/uea/styles/theme.scss",
                 "inject": false,
                 "bundleName": "uea-theme"
+              },
+              {
+                "input": "src/themes/uea_fluxo/styles/theme.scss",
+                "inject": false,
+                "bundleName": "uea_fluxo-theme"
               }
             ],
             "scripts": [],

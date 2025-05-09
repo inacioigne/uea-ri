@@ -6,6 +6,10 @@ rest:
 
 # Theme Config
 themes:
-  - name: 'uea'
+  - name: uea_fluxo
+    extends: uea
+    handle: 123456789/98
+
+  - name: uea
 
 defaultLanguage: pt-BR

@@ -74,7 +74,6 @@
                     <required></required>
                 </field>
             </row>
-
             <row>
                 <field>
                     <dc-schema>dc</dc-schema>
@@ -357,7 +356,8 @@
                 <field>
                     <dc-schema>dc</dc-schema>
                     <dc-element>publisher</dc-element>
-                    <input-type value-pairs-name="common_publisher">dropdown</input-type>
+                    <!-- <input-type value-pairs-name="common_publisher">dropdown</input-type> -->
+                     <input-type>onebox</input-type>
                     <dc-qualifier></dc-qualifier>
                     <repeatable>false</repeatable>
                     <label>Editor</label>
@@ -369,7 +369,8 @@
                     <dc-schema>dc</dc-schema>
                     <dc-element>publisher</dc-element>
                     <dc-qualifier>initials</dc-qualifier>
-                    <input-type value-pairs-name="common_publisher-initials">dropdown</input-type>
+                     <input-type>onebox</input-type>
+                    <!-- <input-type value-pairs-name="common_publisher-initials">dropdown</input-type> -->
                     <repeatable>false</repeatable>
                     <label>Sigla da instituição</label>
                     <style>col-sm-2</style>

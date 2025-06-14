@@ -74,6 +74,8 @@ import {
 import { DSpaceRouterStateSerializer } from './shared/ngrx/dspace-router-state-serializer';
 import { STARTS_WITH_DECORATOR_MAP } from './shared/starts-with/starts-with-decorator';
 
+
+
 export function getConfig() {
   return environment;
 }
@@ -87,6 +89,8 @@ const getBaseHref = (document: Document, appConfig: AppConfig): string => {
 export function getMetaReducers(appConfig: AppConfig): MetaReducer<AppState>[] {
   return appConfig.debug ? [...appMetaReducers, ...debugMetaReducers] : appMetaReducers;
 }
+
+
 
 export const commonAppConfig: ApplicationConfig = {
   providers: [
